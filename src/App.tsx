@@ -1,7 +1,12 @@
 import React from "react";
+import Routing from "./Routing";
 
-function App() {
-  return <h1>hello</h1>;
-}
+const App: React.FC = () => {
+  return (
+    <>
+      <Routing />
+    </>
+  );
+};
 
 export default App;
