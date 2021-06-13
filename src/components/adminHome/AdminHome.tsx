@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./components/header/Header";
-import AdminBlogs from "./components/adminBlogs/AdminBlogs";
+import Header from "../header/Header";
+import AdminBlogs from "../adminBlogs/AdminBlogs";
 
 const AdminHome = () => {
   return (

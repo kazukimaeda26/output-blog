@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import Home from "./Home";
-import AdminHome from "./AdminHome";
+import Home from "./components/home/Home";
+import AdminHome from "./components/adminHome/AdminHome";
 
 const Routing = () => {
   return (
