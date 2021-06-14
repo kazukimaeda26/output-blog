@@ -5,10 +5,13 @@
   height: 5rem;
   background-color: #304ffe;
   padding: 0.8rem 2.5rem;
-  .title {
-    font-size: 2.5rem;
-    color: white;
-    font-weight: bold;
+  .titleWrapper {
+    text-decoration: none;
+    .title {
+      font-size: 2.5rem;
+      color: white;
+      font-weight: bold;
+    }
   }
   .link {
     text-decoration: none;

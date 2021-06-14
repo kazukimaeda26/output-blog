@@ -15,7 +15,9 @@ const Header: React.FC = () => {
 
   return (
     <div className={styles.headerWrapper}>
-      <div className={styles.title}>Dash Board</div>
+      <Link to="/" className={styles.titleWrapper}>
+        <div className={styles.title}>Dash Board</div>
+      </Link>
       <Link to="output/new" className={styles.link}>
         <Button
           variant="contained"
