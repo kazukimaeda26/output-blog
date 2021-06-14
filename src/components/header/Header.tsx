@@ -3,22 +3,29 @@ import Button from "@material-ui/core/Button";
 import styles from "./Header.module.scss";
 import CreateIcon from "@material-ui/icons/Create";
 import { CountUp, bbb } from "../../features/blog/blogSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
 
   const aaa = () => {
-    dispatch(bbb(true));
+    dispatch(CountUp);
   };
 
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.title}>Dash Board</div>
-      <Button variant="contained" className={styles.button} onClick={aaa}>
-        <CreateIcon className={styles.icon} />
-        記事作成
-      </Button>
+      <Link to="output/new" className={styles.link}>
+        <Button
+          variant="contained"
+          className={styles.button}
+          onClick={() => aaa}
+        >
+          <CreateIcon className={styles.icon} />
+          記事作成
+        </Button>
+      </Link>
     </div>
   );
 };
