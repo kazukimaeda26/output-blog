@@ -23,12 +23,10 @@ export const blogSlice = createSlice({
       console.log("state");
       state.idCount++;
     },
-    bbb: (state, action) => {
-      console.log(state.blogs);
-    },
   },
 });
-
-export const { CountUp, bbb } = blogSlice.actions;
+export const allBlogs = (state: RootState): blogState["blogs"] =>
+  state.blog.blogs;
+export const { CountUp } = blogSlice.actions;
 
 export default blogSlice.reducer;
