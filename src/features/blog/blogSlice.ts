@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
+import sampleData from "./sampleData.json";
 
+console.log(sampleData);
 export interface blogState {
   idCount: number;
   blogs: { id: number; title: string; text: string }[];
@@ -9,10 +11,7 @@ export interface blogState {
 
 const initialState: blogState = {
   idCount: 0,
-  blogs: [
-    { id: 1, title: "111", text: "111 text" },
-    { id: 2, title: "222", text: "222 text" },
-  ],
+  blogs: [...sampleData],
   selectedBlog: { id: 1, title: "111", text: "111 text" },
 };
 
