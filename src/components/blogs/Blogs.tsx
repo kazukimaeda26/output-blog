@@ -31,8 +31,6 @@ const rows = [
 
 const Blogs: React.FC = () => {
   const blogs = useSelector(allBlogs);
-  console.log(rows);
-  console.log(blogs);
 
   return (
     <TableContainer component={Paper}>

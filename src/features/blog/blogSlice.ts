@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
 import sampleData from "./sampleData.json";
 
-console.log(sampleData);
 export interface blogState {
   idCount: number;
   blogs: {
