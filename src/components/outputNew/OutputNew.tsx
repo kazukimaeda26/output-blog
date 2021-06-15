@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../header/Header";
 import TextField from "@material-ui/core/TextField";
 import styles from "./OutputNew.module.scss";
+import Button from "@material-ui/core/Button";
 
 const OutputNew = () => {
   return (
@@ -26,6 +27,11 @@ const OutputNew = () => {
             defaultValue="Default Value"
             variant="outlined"
           />
+          <div className={styles.buttonWrapper}>
+            <Button className={styles.button} variant="contained">
+              記事を投稿
+            </Button>
+          </div>
         </form>
       </div>
     </>

@@ -3,6 +3,18 @@
   .form {
     background-color: #e0f7fa;
     width: 90vw;
+    .buttonWrapper {
+      width: 100%;
+      margin: 1rem;
+      display: flex;
+      justify-content: center;
+      .button {
+        color: white;
+        font-weight: bold;
+        background-color: #304ffe;
+        width: 50vw;
+      }
+    }
   }
   .title {
     width: 50%;
