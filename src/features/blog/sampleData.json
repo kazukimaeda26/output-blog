@@ -1,4 +1,18 @@
 [
-  { "id": 0, "title": "blog1", "text": "blog1 sample text" },
-  { "id": 1, "title": "blog2", "text": "blog2 sample text" }
+  {
+    "id": 0,
+    "title": "blog1",
+    "text": "blog1 sample text",
+    "createdAt": "20210101",
+    "updatedAt": "20210201",
+    "likes": 50
+  },
+  {
+    "id": 1,
+    "title": "blog2",
+    "text": "blog2 sample text",
+    "createdAt": "20210301",
+    "updatedAt": "20210401",
+    "likes": 30
+  }
 ]

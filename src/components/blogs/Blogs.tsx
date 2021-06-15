@@ -7,6 +7,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { useSelector } from "react-redux";
+import { allBlogs } from "../../features/blog/blogSlice";
 
 function createData(
   id: number,
@@ -28,6 +30,10 @@ const rows = [
 ];
 
 const Blogs: React.FC = () => {
+  const blogs = useSelector(allBlogs);
+  console.log(rows);
+  console.log(blogs);
+
   return (
     <TableContainer component={Paper}>
       <Table className={styles.table} aria-label="simple table">
@@ -41,13 +47,13 @@ const Blogs: React.FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell align="right">{row.id}</TableCell>
-              <TableCell align="center">{row.title}</TableCell>
-              <TableCell align="right">{row.createdAt}</TableCell>
-              <TableCell align="right">{row.updatedAt}</TableCell>
-              <TableCell align="right">{row.likes}</TableCell>
+          {blogs.map((blog) => (
+            <TableRow key={blog.id}>
+              <TableCell align="right">{blog.id}</TableCell>
+              <TableCell align="center">{blog.title}</TableCell>
+              <TableCell align="right">{blog.createdAt}</TableCell>
+              <TableCell align="right">{blog.updatedAt}</TableCell>
+              <TableCell align="right">{blog.likes}</TableCell>
             </TableRow>
           ))}
         </TableBody>

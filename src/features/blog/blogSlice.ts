@@ -5,14 +5,35 @@ import sampleData from "./sampleData.json";
 console.log(sampleData);
 export interface blogState {
   idCount: number;
-  blogs: { id: number; title: string; text: string }[];
-  selectedBlog: { id: number; title: string; text: string };
+  blogs: {
+    id: number;
+    title: string;
+    text: string;
+    createdAt: string;
+    updatedAt: string;
+    likes: number;
+  }[];
+  selectedBlog: {
+    id: number;
+    title: string;
+    text: string;
+    createdAt: string;
+    updatedAt: string;
+    likes: number;
+  };
 }
 
 const initialState: blogState = {
   idCount: 0,
   blogs: [...sampleData],
-  selectedBlog: { id: 1, title: "111", text: "111 text" },
+  selectedBlog: {
+    id: 1,
+    title: "111",
+    text: "111 text",
+    createdAt: "20200101",
+    updatedAt: "20200201",
+    likes: 70,
+  },
 };
 
 export const blogSlice = createSlice({
@@ -20,7 +41,6 @@ export const blogSlice = createSlice({
   initialState,
   reducers: {
     CountUp: (state, action) => {
-      console.log("state");
       state.idCount++;
     },
   },
