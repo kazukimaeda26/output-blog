@@ -39,6 +39,17 @@ export const blogSlice = createSlice({
   name: "blog",
   initialState,
   reducers: {
+    createBlog: (state, action) => {
+      const newBlog = {
+        id: 100,
+        title: "sample title",
+        text: "action.payload",
+        createdAt: "0615",
+        updatedAt: "0615",
+        likes: 0,
+      };
+      state.blogs = [newBlog, ...state.blogs];
+    },
     CountUp: (state, action) => {
       state.idCount++;
     },
@@ -46,6 +57,6 @@ export const blogSlice = createSlice({
 });
 export const allBlogs = (state: RootState): blogState["blogs"] =>
   state.blog.blogs;
-export const { CountUp } = blogSlice.actions;
+export const { CountUp, createBlog } = blogSlice.actions;
 
 export default blogSlice.reducer;
