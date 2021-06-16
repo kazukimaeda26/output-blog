@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { createBlog } from "../../features/blog/blogSlice";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 type Inputs = {
   blogTitle: string;
@@ -14,26 +16,29 @@ type Inputs = {
 
 const OutputNew = () => {
   const dispatch = useDispatch();
-  const { handleSubmit } = useForm();
+  const { handleSubmit, register, reset } = useForm();
+
+  const history = useHistory();
+  const handleLink = (path: string) => history.push(path);
   const handleCreate = (data: Inputs) => {
     dispatch(createBlog(data));
+    history.push("/");
   };
+
   return (
     <>
       <Header />
       <div className={styles.newBlogWrapper}>
-        <form
-          onSubmit={handleSubmit(handleCreate)}
-          className={styles.form}
-          autoComplete="off"
-          action="/"
-        >
+        <form onSubmit={handleSubmit(handleCreate)} className={styles.form}>
           <p>タイトル</p>
           <TextField
             id="outlined-basic"
             className={styles.title}
-            label="title"
+            label="New Blog"
             variant="outlined"
+            defaultValue={"default value"}
+            name="blogTitle"
+            inputRef={register}
           />
           <p>テキスト</p>
           <TextField
@@ -44,9 +49,11 @@ const OutputNew = () => {
             rows={12}
             defaultValue="Default Value"
             variant="outlined"
+            name="blogText"
+            inputRef={register}
           />
           <div className={styles.buttonWrapper}>
-            <Button type="submit" className={styles.button} variant="contained">
+            <Button type="submit" className={styles.button}>
               記事を投稿
             </Button>
           </div>

@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState, AppThunk } from "../../app/store";
 import sampleData from "./sampleData.json";
-
 export interface blogState {
   idCount: number;
   blogs: {
@@ -11,6 +10,7 @@ export interface blogState {
     createdAt: string;
     updatedAt: string;
     likes: number;
+    completed: boolean;
   }[];
   selectedBlog: {
     id: number;
@@ -19,6 +19,7 @@ export interface blogState {
     createdAt: string;
     updatedAt: string;
     likes: number;
+    completed: boolean;
   };
 }
 
@@ -32,6 +33,7 @@ const initialState: blogState = {
     createdAt: "20200101",
     updatedAt: "20200201",
     likes: 70,
+    completed: false,
   },
 };
 
@@ -40,13 +42,15 @@ export const blogSlice = createSlice({
   initialState,
   reducers: {
     createBlog: (state, action) => {
+      const now = new Date();
       const newBlog = {
-        id: 100,
-        title: "sample title",
-        text: "action.payload",
-        createdAt: "0615",
-        updatedAt: "0615",
+        id: state.blogs.length,
+        title: action.payload.blogTitle,
+        text: action.payload.blogText,
+        createdAt: now.toLocaleString(),
+        updatedAt: now.toLocaleString(),
         likes: 0,
+        completed: true,
       };
       state.blogs = [newBlog, ...state.blogs];
     },
