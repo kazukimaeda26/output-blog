@@ -6,7 +6,7 @@
     "createdAt": "20210101",
     "updatedAt": "20210201",
     "likes": 50,
-    "completed": true
+    "status": ""
   },
   {
     "id": 1,
@@ -15,6 +15,6 @@
     "createdAt": "20210301",
     "updatedAt": "20210401",
     "likes": 30,
-    "completed": true
+    "status": ""
   }
 ]

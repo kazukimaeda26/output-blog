@@ -13,7 +13,7 @@ interface propType {
     createdAt: string;
     updatedAt: string;
     likes: number;
-    completed: boolean;
+    status: string;
   };
 }
 

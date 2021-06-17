@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../app/store";
+import { RootState } from "../../app/store";
 import sampleData from "./sampleData.json";
 export interface blogState {
   idCount: number;
@@ -10,7 +10,7 @@ export interface blogState {
     createdAt: string;
     updatedAt: string;
     likes: number;
-    completed: boolean;
+    status: string;
   }[];
   selectedBlog: {
     id: number;
@@ -19,7 +19,7 @@ export interface blogState {
     createdAt: string;
     updatedAt: string;
     likes: number;
-    completed: boolean;
+    status: string;
   };
 }
 
@@ -33,7 +33,7 @@ const initialState: blogState = {
     createdAt: "20200101",
     updatedAt: "20200201",
     likes: 70,
-    completed: false,
+    status: "",
   },
 };
 
@@ -50,18 +50,32 @@ export const blogSlice = createSlice({
         createdAt: now.toLocaleString(),
         updatedAt: now.toLocaleString(),
         likes: 0,
-        completed: true,
+        status: "new",
       };
       state.blogs = [newBlog, ...state.blogs];
+    },
+    updateBlog: (state, action) => {
+      const now = new Date();
+      const editBlog = {
+        id: 100,
+        title: "updated",
+        text: "updated",
+        updatedAt: now.toLocaleString(),
+        status: "edit",
+      };
+      // state.blogs = [{ ...editBlog, ...state.blog }, ...state.blogs];
     },
     selectBlog: (state, action) => {
       state.selectedBlog = action.payload;
     },
   },
 });
-export const { createBlog, selectBlog } = blogSlice.actions;
+export const { createBlog, updateBlog, selectBlog } = blogSlice.actions;
 
 export const allBlogs = (state: RootState): blogState["blogs"] =>
   state.blog.blogs;
+
+export const selectedBlog = (state: RootState): blogState["selectedBlog"] =>
+  state.blog.selectedBlog;
 
 export default blogSlice.reducer;
