@@ -1,9 +1,13 @@
 import React from "react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+
 import { useDispatch } from "react-redux";
 import { selectBlog } from "../../features/blog/blogSlice";
 import { useHistory } from "react-router-dom";
+import styles from "./BlogItem.module.scss";
 
 interface propType {
   blog: {
@@ -29,14 +33,24 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
 
   return (
     <>
-      <TableRow key={blog.id} onClick={transitionToEdit}>
+      <TableRow key={blog.id}>
         <TableCell align="right">{blog.id}</TableCell>
         <TableCell align="center">{blog.title}</TableCell>
         <TableCell align="right">{blog.createdAt}</TableCell>
         <TableCell align="right">{blog.updatedAt}</TableCell>
         <TableCell align="right">{blog.likes}</TableCell>
-        <TableCell align="center">編集ボタン</TableCell>
-        <TableCell align="center">削除ボタン</TableCell>
+        <TableCell align="center" onClick={transitionToEdit}>
+          <div className={styles.iconWrapper}>
+            <EditIcon className={styles.editIcon} />
+            編集
+          </div>
+        </TableCell>
+        <TableCell align="center">
+          <div className={styles.iconWrapper}>
+            <DeleteIcon className={styles.deleteIcon} />
+            削除
+          </div>
+        </TableCell>
       </TableRow>
     </>
   );
