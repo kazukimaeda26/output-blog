@@ -11,11 +11,7 @@ const Header: React.FC = () => {
         <div className={styles.title}>Dash Board</div>
       </Link>
       <Link to="blog/new" className={styles.link}>
-        <Button
-          variant="contained"
-          className={styles.button}
-          onClick={() => console.log("aaa")}
-        >
+        <Button variant="contained" className={styles.button}>
           <NoteAddIcon className={styles.icon} />
           記事作成
         </Button>
