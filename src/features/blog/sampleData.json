@@ -5,8 +5,7 @@
     "text": "blog1 sample text",
     "createdAt": "20210101",
     "updatedAt": "20210201",
-    "likes": 50,
-    "status": ""
+    "likes": 50
   },
   {
     "id": 1,
@@ -14,7 +13,6 @@
     "text": "blog2 sample text",
     "createdAt": "20210301",
     "updatedAt": "20210401",
-    "likes": 30,
-    "status": ""
+    "likes": 30
   }
 ]

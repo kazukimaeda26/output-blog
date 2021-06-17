@@ -17,7 +17,6 @@ interface propType {
     createdAt: string;
     updatedAt: string;
     likes: number;
-    status: string;
   };
 }
 

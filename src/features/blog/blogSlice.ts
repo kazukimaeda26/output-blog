@@ -10,7 +10,6 @@ export interface blogState {
     createdAt: string;
     updatedAt: string;
     likes: number;
-    status: string;
   }[];
   selectedBlog: {
     id: number;
@@ -19,8 +18,8 @@ export interface blogState {
     createdAt: string;
     updatedAt: string;
     likes: number;
-    status: string;
   };
+  action: string;
 }
 
 const initialState: blogState = {
@@ -33,8 +32,8 @@ const initialState: blogState = {
     createdAt: "20200101",
     updatedAt: "20200201",
     likes: 70,
-    status: "",
   },
+  action: "init",
 };
 
 export const blogSlice = createSlice({
@@ -50,7 +49,6 @@ export const blogSlice = createSlice({
         createdAt: now.toLocaleString(),
         updatedAt: now.toLocaleString(),
         likes: 0,
-        status: "new",
       };
       state.blogs = [newBlog, ...state.blogs];
     },
@@ -61,16 +59,19 @@ export const blogSlice = createSlice({
         title: "updated",
         text: "updated",
         updatedAt: now.toLocaleString(),
-        status: "edit",
       };
       // state.blogs = [{ ...editBlog, ...state.blog }, ...state.blogs];
     },
     selectBlog: (state, action) => {
       state.selectedBlog = action.payload;
     },
+    changeAction: (state, action) => {
+      state.action = action.payload;
+    },
   },
 });
-export const { createBlog, updateBlog, selectBlog } = blogSlice.actions;
+export const { createBlog, updateBlog, selectBlog, changeAction } =
+  blogSlice.actions;
 
 export const allBlogs = (state: RootState): blogState["blogs"] =>
   state.blog.blogs;
