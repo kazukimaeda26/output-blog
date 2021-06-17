@@ -30,6 +30,8 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
         <TableCell align="right">{blog.createdAt}</TableCell>
         <TableCell align="right">{blog.updatedAt}</TableCell>
         <TableCell align="right">{blog.likes}</TableCell>
+        <TableCell align="center">編集ボタン</TableCell>
+        <TableCell align="center">削除ボタン</TableCell>
       </TableRow>
     </>
   );
