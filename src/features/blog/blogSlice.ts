@@ -54,13 +54,16 @@ export const blogSlice = createSlice({
       };
       state.blogs = [newBlog, ...state.blogs];
     },
-    CountUp: (state, action) => {
-      state.idCount++;
+    selectBlog: (state, action) => {
+      console.log(state);
+      console.log(action);
+      state.selectedBlog = action.payload;
     },
   },
 });
+export const { createBlog, selectBlog } = blogSlice.actions;
+
 export const allBlogs = (state: RootState): blogState["blogs"] =>
   state.blog.blogs;
-export const { CountUp, createBlog } = blogSlice.actions;
 
 export default blogSlice.reducer;

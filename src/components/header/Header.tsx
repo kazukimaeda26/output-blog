@@ -2,16 +2,11 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import styles from "./Header.module.scss";
 import CreateIcon from "@material-ui/icons/Create";
-import { CountUp } from "../../features/blog/blogSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
-
-  const aaa = () => {
-    dispatch(CountUp);
-  };
 
   return (
     <div className={styles.headerWrapper}>
@@ -22,7 +17,7 @@ const Header: React.FC = () => {
         <Button
           variant="contained"
           className={styles.button}
-          onClick={() => aaa}
+          onClick={() => console.log("aaa")}
         >
           <CreateIcon className={styles.icon} />
           記事作成
