@@ -10,7 +10,7 @@ const Header: React.FC = () => {
       <Link to="/" className={styles.titleWrapper}>
         <div className={styles.title}>Dash Board</div>
       </Link>
-      <Link to="output/new" className={styles.link}>
+      <Link to="blog/new" className={styles.link}>
         <Button
           variant="contained"
           className={styles.button}
