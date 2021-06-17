@@ -11,16 +11,6 @@ import { useSelector } from "react-redux";
 import { allBlogs } from "../../features/blog/blogSlice";
 import BlogItem from "../../components/blogItem/BlogItem";
 
-function createData(
-  id: number,
-  title: string,
-  createdAt: string,
-  updatedAt: string,
-  likes: number
-) {
-  return { id, title, createdAt, updatedAt, likes };
-}
-
 const Blogs: React.FC = () => {
   const blogs = useSelector(allBlogs);
 
@@ -34,6 +24,8 @@ const Blogs: React.FC = () => {
             <TableCell align="right">作成日時</TableCell>
             <TableCell align="right">最終更新日時</TableCell>
             <TableCell align="right">いいね数</TableCell>
+            <TableCell align="center">編集する</TableCell>
+            <TableCell align="center">削除する</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
