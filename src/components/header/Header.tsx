@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import styles from "./Header.module.scss";
-import CreateIcon from "@material-ui/icons/Create";
+import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
@@ -16,7 +16,7 @@ const Header: React.FC = () => {
           className={styles.button}
           onClick={() => console.log("aaa")}
         >
-          <CreateIcon className={styles.icon} />
+          <NoteAddIcon className={styles.icon} />
           記事作成
         </Button>
       </Link>
