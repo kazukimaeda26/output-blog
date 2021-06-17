@@ -3,6 +3,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import { useDispatch } from "react-redux";
 import { selectBlog } from "../../features/blog/blogSlice";
+import { useHistory } from "react-router-dom";
 
 interface propType {
   blog: {
@@ -17,9 +18,13 @@ interface propType {
 }
 
 const BlogItem: React.FC<propType> = ({ blog }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
+
   const transitionToEdit = () => {
     dispatch(selectBlog(blog));
+    const path = `/blog/edit/${blog.id}`;
+    history.push(path);
   };
 
   return (
