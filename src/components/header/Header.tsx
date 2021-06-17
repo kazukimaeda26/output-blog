@@ -2,12 +2,9 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import styles from "./Header.module.scss";
 import CreateIcon from "@material-ui/icons/Create";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
-  const dispatch = useDispatch();
-
   return (
     <div className={styles.headerWrapper}>
       <Link to="/" className={styles.titleWrapper}>

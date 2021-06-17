@@ -55,8 +55,6 @@ export const blogSlice = createSlice({
       state.blogs = [newBlog, ...state.blogs];
     },
     selectBlog: (state, action) => {
-      console.log(state);
-      console.log(action);
       state.selectedBlog = action.payload;
     },
   },
