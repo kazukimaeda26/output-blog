@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import styles from "./BlogForm.module.scss";
 import {
   createBlog,
+  updateBlog,
   allBlogs,
   getSelectedBlog,
   getEditState,
@@ -21,7 +22,6 @@ interface Inputs {
   createdAt: string;
   updatedAt: string;
   likes: number;
-  completed: boolean;
 }
 
 const BlogForm = () => {
@@ -39,9 +39,19 @@ const BlogForm = () => {
     history.push("/");
   };
 
+  const handleEdit = (data: Inputs) => {
+    dispatch(updateBlog(data));
+    // history.push("/");
+  };
+
   return (
     <div className={styles.blogWrapper}>
-      <form onSubmit={handleSubmit(handleCreate)} className={styles.form}>
+      <form
+        onSubmit={
+          editState ? handleSubmit(handleEdit) : handleSubmit(handleCreate)
+        }
+        className={styles.form}
+      >
         <p>タイトル</p>
         <TextField
           id="outlined-basic"
@@ -67,9 +77,15 @@ const BlogForm = () => {
           inputRef={register}
         />
         <div className={styles.buttonWrapper}>
-          <Button type="submit" className={styles.button}>
-            記事を投稿
-          </Button>
+          {editState ? (
+            <Button type="submit" className={styles.button}>
+              記事を更新
+            </Button>
+          ) : (
+            <Button type="submit" className={styles.button}>
+              記事を投稿
+            </Button>
+          )}
         </div>
       </form>
     </div>

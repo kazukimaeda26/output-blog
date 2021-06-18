@@ -53,6 +53,8 @@ export const blogSlice = createSlice({
       state.blogs = [newBlog, ...state.blogs];
     },
     updateBlog: (state, action) => {
+      console.log(state.blogs);
+      console.log(action.payload);
       const now = new Date();
       const editBlog = {
         id: 100,
