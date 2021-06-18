@@ -55,13 +55,17 @@ export const blogSlice = createSlice({
     updateBlog: (state, action) => {
       const now = new Date();
       const editBlog = state.blogs.find(
-        (b) => b.id === Number(action.payload.blogId)
+        (blog) => blog.id === Number(action.payload.blogId)
       );
       if (editBlog) {
         editBlog.title = action.payload.blogTitle;
         editBlog.text = action.payload.blogText;
         editBlog.updatedAt = now.toLocaleString();
       }
+    },
+    deleteBlog: (state, action) => {
+      console.log(action.payload.id);
+      state.blogs = state.blogs.filter((blog) => blog.id !== action.payload.id);
     },
     selectBlog: (state, action) => {
       state.selectedBlog = action.payload;
@@ -71,8 +75,13 @@ export const blogSlice = createSlice({
     },
   },
 });
-export const { createBlog, updateBlog, selectBlog, toggleEditState } =
-  blogSlice.actions;
+export const {
+  createBlog,
+  updateBlog,
+  deleteBlog,
+  selectBlog,
+  toggleEditState,
+} = blogSlice.actions;
 
 export const allBlogs = (state: RootState): blogState["blogs"] =>
   state.blog.blogs;

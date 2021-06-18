@@ -5,7 +5,11 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 import { useDispatch } from "react-redux";
-import { selectBlog, toggleEditState } from "../../features/blog/blogSlice";
+import {
+  selectBlog,
+  toggleEditState,
+  deleteBlog,
+} from "../../features/blog/blogSlice";
 import { useHistory } from "react-router-dom";
 import styles from "./BlogItem.module.scss";
 
@@ -31,6 +35,10 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
     history.push(path);
   };
 
+  const handleDeleteBlog = () => {
+    dispatch(deleteBlog(blog));
+  };
+
   return (
     <>
       <TableRow key={blog.id}>
@@ -46,7 +54,7 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
           </div>
         </TableCell>
         <TableCell align="center">
-          <div className={styles.iconWrapper}>
+          <div className={styles.iconWrapper} onClick={handleDeleteBlog}>
             <DeleteIcon className={styles.deleteIcon} />
             削除
           </div>
