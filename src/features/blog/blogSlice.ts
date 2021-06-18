@@ -76,7 +76,7 @@ export const { createBlog, updateBlog, selectBlog, toggleEditState } =
 export const allBlogs = (state: RootState): blogState["blogs"] =>
   state.blog.blogs;
 
-export const selectedBlog = (state: RootState): blogState["selectedBlog"] =>
+export const getSelectedBlog = (state: RootState): blogState["selectedBlog"] =>
   state.blog.selectedBlog;
 
 export const getEditState = (state: RootState): blogState["edit"] =>
