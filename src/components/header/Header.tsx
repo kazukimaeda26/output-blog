@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { toggleEditState } from "../../features/blog/blogSlice";
+import { toggleEditState, getEditState } from "../../features/blog/blogSlice";
 
 type Inputs = {
   edit?: boolean;
@@ -14,6 +14,7 @@ type Inputs = {
 const Header: React.FC<Inputs> = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const editState = useSelector(getEditState);
 
   const handleBlogCreate = () => {
     const path = "/blog/new";
@@ -25,14 +26,16 @@ const Header: React.FC<Inputs> = () => {
       <Link to="/" className={styles.titleWrapper}>
         <div className={styles.title}>Dash Board</div>
       </Link>
-      <Button
-        variant="contained"
-        className={styles.button}
-        onClick={handleBlogCreate}
-      >
-        <NoteAddIcon className={styles.icon} />
-        記事作成
-      </Button>
+      {editState ? null : (
+        <Button
+          variant="contained"
+          className={styles.button}
+          onClick={handleBlogCreate}
+        >
+          <NoteAddIcon className={styles.icon} />
+          記事作成
+        </Button>
+      )}
     </div>
   );
 };
