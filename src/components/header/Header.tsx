@@ -3,19 +3,36 @@ import Button from "@material-ui/core/Button";
 import styles from "./Header.module.scss";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-const Header: React.FC = () => {
+import { toggleEditState } from "../../features/blog/blogSlice";
+
+type Inputs = {
+  edit?: boolean;
+};
+const Header: React.FC<Inputs> = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleBlogCreate = () => {
+    const path = "/blog/new";
+    history.push(path);
+  };
+
   return (
     <div className={styles.headerWrapper}>
       <Link to="/" className={styles.titleWrapper}>
         <div className={styles.title}>Dash Board</div>
       </Link>
-      <Link to="blog/new" className={styles.link}>
-        <Button variant="contained" className={styles.button}>
-          <NoteAddIcon className={styles.icon} />
-          記事作成
-        </Button>
-      </Link>
+      <Button
+        variant="contained"
+        className={styles.button}
+        onClick={handleBlogCreate}
+      >
+        <NoteAddIcon className={styles.icon} />
+        記事作成
+      </Button>
     </div>
   );
 };

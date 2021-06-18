@@ -5,7 +5,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 import { useDispatch } from "react-redux";
-import { selectBlog } from "../../features/blog/blogSlice";
+import { selectBlog, toggleEditState } from "../../features/blog/blogSlice";
 import { useHistory } from "react-router-dom";
 import styles from "./BlogItem.module.scss";
 
@@ -24,8 +24,8 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const transitionToEdit = () => {
-    dispatch(selectBlog(blog));
+  const handleEditBlog = () => {
+    dispatch(toggleEditState(true));
     const path = `/blog/edit/${blog.id}`;
     history.push(path);
   };
@@ -38,7 +38,7 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
         <TableCell align="right">{blog.createdAt}</TableCell>
         <TableCell align="right">{blog.updatedAt}</TableCell>
         <TableCell align="right">{blog.likes}</TableCell>
-        <TableCell align="center" onClick={transitionToEdit}>
+        <TableCell align="center" onClick={handleEditBlog}>
           <div className={styles.iconWrapper}>
             <EditIcon className={styles.editIcon} />
             編集
