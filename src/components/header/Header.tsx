@@ -4,7 +4,7 @@ import styles from "./Header.module.scss";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { toggleEditState, getEditState } from "../../features/blog/blogSlice";
 
@@ -14,6 +14,8 @@ type Inputs = {
 const Header: React.FC<Inputs> = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
+  console.log(location);
   const editState = useSelector(getEditState);
 
   const handleBlogCreate = () => {
@@ -30,7 +32,7 @@ const Header: React.FC<Inputs> = () => {
       <div className={styles.titleWrapper} onClick={transitionToRootPath}>
         <div className={styles.title}>Dash Board</div>
       </div>
-      {editState ? null : (
+      {location.pathname === "/" ? (
         <Button
           variant="contained"
           className={styles.button}
@@ -39,7 +41,7 @@ const Header: React.FC<Inputs> = () => {
           <NoteAddIcon className={styles.icon} />
           記事作成
         </Button>
-      )}
+      ) : null}
     </div>
   );
 };
