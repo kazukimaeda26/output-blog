@@ -10,7 +10,7 @@ import styles from "./BlogForm.module.scss";
 import {
   createBlog,
   allBlogs,
-  selectedBlog,
+  getSelectedBlog,
   getEditState,
 } from "../../features/blog/blogSlice";
 
@@ -26,7 +26,7 @@ interface Inputs {
 
 const BlogForm = () => {
   const blogs = useSelector(allBlogs);
-  const blog = useSelector(selectedBlog);
+  const blog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
 
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ const BlogForm = () => {
           label="New Blog"
           variant="outlined"
           defaultValue={
-            editState ? "Edit desune" : "タイトルをここにかきましょう！"
+            editState ? blog.title : "タイトルをここにかきましょう！"
           }
           name="blogTitle"
           inputRef={register}
@@ -61,9 +61,7 @@ const BlogForm = () => {
           label="Multiline"
           multiline
           rows={12}
-          defaultValue={
-            editState ? "Edit desune" : "内容をここにかきましょう！"
-          }
+          defaultValue={editState ? blog.text : "内容をここにかきましょう！"}
           variant="outlined"
           name="blogText"
           inputRef={register}
