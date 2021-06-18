@@ -11,6 +11,7 @@ import {
   createBlog,
   allBlogs,
   selectedBlog,
+  getEditState,
 } from "../../features/blog/blogSlice";
 
 interface Inputs {
@@ -26,6 +27,7 @@ interface Inputs {
 const BlogForm = () => {
   const blogs = useSelector(allBlogs);
   const blog = useSelector(selectedBlog);
+  const editState = useSelector(getEditState);
 
   const dispatch = useDispatch();
   const { handleSubmit, register, reset } = useForm();
@@ -46,7 +48,9 @@ const BlogForm = () => {
           className={styles.title}
           label="New Blog"
           variant="outlined"
-          defaultValue={"default value"}
+          defaultValue={
+            editState ? "Edit desune" : "タイトルをここにかきましょう！"
+          }
           name="blogTitle"
           inputRef={register}
         />
@@ -57,7 +61,9 @@ const BlogForm = () => {
           label="Multiline"
           multiline
           rows={12}
-          defaultValue="Default Value"
+          defaultValue={
+            editState ? "Edit desune" : "内容をここにかきましょう！"
+          }
           variant="outlined"
           name="blogText"
           inputRef={register}

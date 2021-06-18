@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
-import { allBlogs, selectedBlog } from "../../features/blog/blogSlice";
+import { getEditState } from "../../features/blog/blogSlice";
 
 import BlogForm from "../blogForm/BlogForm";
 import Header from "../header/Header";
@@ -16,8 +16,6 @@ const BlogEdit: React.FC = () => {
   }
   const { blogId } = useParams<paramTypes>();
 
-  const blogs = useSelector(allBlogs);
-  const blog = useSelector(selectedBlog);
   return (
     <>
       <Header />
