@@ -11,7 +11,6 @@ import styles from "./BlogForm.module.scss";
 import {
   createBlog,
   updateBlog,
-  allBlogs,
   getSelectedBlog,
   getEditState,
 } from "../../features/blog/blogSlice";
@@ -29,16 +28,14 @@ interface paramTypes {
   blogId: string;
 }
 
-const BlogForm = () => {
-  const blogs = useSelector(allBlogs);
+const BlogForm: React.FC = () => {
   const blog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
 
   const dispatch = useDispatch();
-  const { handleSubmit, register, reset } = useForm();
+  const { handleSubmit, register } = useForm();
 
   const history = useHistory();
-  const handleLink = (path: string) => history.push(path);
   const handleCreate = (data: Inputs) => {
     dispatch(createBlog(data));
     history.push("/");

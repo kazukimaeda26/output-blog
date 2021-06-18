@@ -62,17 +62,6 @@ export const blogSlice = createSlice({
         editBlog.text = action.payload.blogText;
         editBlog.updatedAt = now.toLocaleString();
       }
-      // const editBlog = {
-      //   id: state.selectedBlog.id,
-      //   title: action.payload.blogTitle,
-      //   text: action.payload.blogText,
-      //   createdAt: state.selectedBlog.createdAt,
-      //   updatedAt: now.toLocaleString(),
-      //   likes: state.selectedBlog.likes,
-      // };
-
-      // state.blogs = [{ ...editBlog }];
-      // state.blogs = [{ ...editBlog, ...state.blog }, ...state.blogs];
     },
     selectBlog: (state, action) => {
       state.selectedBlog = action.payload;
