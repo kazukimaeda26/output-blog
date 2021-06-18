@@ -50,50 +50,54 @@ const BlogForm: React.FC = () => {
   };
 
   return (
-    <div className={styles.blogWrapper}>
-      <form
-        onSubmit={
-          editState ? handleSubmit(handleEdit) : handleSubmit(handleCreate)
-        }
-        className={styles.form}
-      >
-        <p>タイトル</p>
-        <TextField
-          id="outlined-basic"
-          className={styles.title}
-          label="New Blog"
-          variant="outlined"
-          defaultValue={
-            editState ? blog.title : "タイトルをここにかきましょう！"
-          }
-          name="blogTitle"
-          inputRef={register}
-        />
-        <p>テキスト</p>
-        <TextField
-          id="outlined-multiline-static"
-          className={styles.text}
-          label="Multiline"
-          multiline
-          rows={12}
-          defaultValue={editState ? blog.text : "内容をここにかきましょう！"}
-          variant="outlined"
-          name="blogText"
-          inputRef={register}
-        />
-        <div className={styles.buttonWrapper}>
-          {editState ? (
-            <Button type="submit" className={styles.button}>
-              記事を更新
-            </Button>
-          ) : (
-            <Button type="submit" className={styles.button}>
-              記事を投稿
-            </Button>
-          )}
+    <form
+      onSubmit={
+        editState ? handleSubmit(handleEdit) : handleSubmit(handleCreate)
+      }
+      className={styles.form}
+    >
+      <div className={styles.blogWrapper}>
+        <div className={styles.inputWrapper}>
+          <TextField
+            id="outlined-basic"
+            className={styles.title}
+            label="New Blog"
+            variant="outlined"
+            defaultValue={
+              editState ? blog.title : "タイトルをここにかきましょう！"
+            }
+            name="blogTitle"
+            inputRef={register}
+          />
+          <TextField
+            id="outlined-multiline-static"
+            className={styles.text}
+            label="Multiline"
+            multiline
+            rows={20}
+            defaultValue={editState ? blog.text : "内容をここにかきましょう！"}
+            variant="outlined"
+            name="blogText"
+            inputRef={register}
+          />
         </div>
-      </form>
-    </div>
+        <div className={styles.writtenCharaWrapper}>
+          <div className={styles.title}>title ga kokoni</div>
+          <div className={styles.text}>text ga kokoni</div>
+        </div>
+      </div>
+      <div className={styles.buttonWrapper}>
+        {editState ? (
+          <Button type="submit" className={styles.button}>
+            記事を更新
+          </Button>
+        ) : (
+          <Button type="submit" className={styles.button}>
+            記事を投稿
+          </Button>
+        )}
+      </div>
+    </form>
   );
 };
 
