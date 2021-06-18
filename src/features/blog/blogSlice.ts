@@ -23,7 +23,7 @@ export interface blogState {
 }
 
 const initialState: blogState = {
-  idCount: 1,
+  idCount: 0,
   blogs: [],
   selectedBlog: {
     id: 1,
@@ -41,9 +41,10 @@ export const blogSlice = createSlice({
   initialState,
   reducers: {
     createBlog: (state, action) => {
+      state.idCount++;
       const now = new Date();
       const newBlog = {
-        id: state.blogs.length + 1,
+        id: state.idCount,
         title: action.payload.blogTitle,
         text: action.payload.blogText,
         createdAt: now.toLocaleString(),
