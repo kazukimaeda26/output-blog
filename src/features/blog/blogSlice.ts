@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import sampleData from "./sampleData.json";
+// import sampleData from "./sampleData.json";
 export interface blogState {
   idCount: number;
   blogs: {
@@ -23,15 +23,15 @@ export interface blogState {
 }
 
 const initialState: blogState = {
-  idCount: 0,
-  blogs: [...sampleData],
+  idCount: 1,
+  blogs: [],
   selectedBlog: {
     id: 1,
-    title: "111",
-    text: "111 text",
-    createdAt: "20200101",
-    updatedAt: "20200201",
-    likes: 70,
+    title: "",
+    text: "",
+    createdAt: "",
+    updatedAt: "",
+    likes: 0,
   },
   edit: false,
 };
@@ -43,7 +43,7 @@ export const blogSlice = createSlice({
     createBlog: (state, action) => {
       const now = new Date();
       const newBlog = {
-        id: state.blogs.length,
+        id: state.blogs.length + 1,
         title: action.payload.blogTitle,
         text: action.payload.blogText,
         createdAt: now.toLocaleString(),
@@ -53,15 +53,25 @@ export const blogSlice = createSlice({
       state.blogs = [newBlog, ...state.blogs];
     },
     updateBlog: (state, action) => {
-      console.log(state.blogs);
-      console.log(action.payload);
       const now = new Date();
-      const editBlog = {
-        id: 100,
-        title: "updated",
-        text: "updated",
-        updatedAt: now.toLocaleString(),
-      };
+      const editBlog = state.blogs.find(
+        (b) => b.id === Number(action.payload.blogId)
+      );
+      if (editBlog) {
+        editBlog.title = action.payload.blogTitle;
+        editBlog.text = action.payload.blogText;
+        editBlog.updatedAt = now.toLocaleString();
+      }
+      // const editBlog = {
+      //   id: state.selectedBlog.id,
+      //   title: action.payload.blogTitle,
+      //   text: action.payload.blogText,
+      //   createdAt: state.selectedBlog.createdAt,
+      //   updatedAt: now.toLocaleString(),
+      //   likes: state.selectedBlog.likes,
+      // };
+
+      // state.blogs = [{ ...editBlog }];
       // state.blogs = [{ ...editBlog, ...state.blog }, ...state.blogs];
     },
     selectBlog: (state, action) => {

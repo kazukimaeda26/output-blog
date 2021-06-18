@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import styles from "./BlogForm.module.scss";
 import {
@@ -24,6 +25,10 @@ interface Inputs {
   likes: number;
 }
 
+interface paramTypes {
+  blogId: string;
+}
+
 const BlogForm = () => {
   const blogs = useSelector(allBlogs);
   const blog = useSelector(getSelectedBlog);
@@ -39,9 +44,12 @@ const BlogForm = () => {
     history.push("/");
   };
 
+  const { blogId } = useParams<paramTypes>();
+
   const handleEdit = (data: Inputs) => {
-    dispatch(updateBlog(data));
-    // history.push("/");
+    const sendData = { ...data, blogId: blogId };
+    dispatch(updateBlog(sendData));
+    history.push("/");
   };
 
   return (

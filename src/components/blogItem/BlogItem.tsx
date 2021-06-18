@@ -25,6 +25,7 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
   const dispatch = useDispatch();
 
   const handleEditBlog = () => {
+    dispatch(selectBlog(blog));
     dispatch(toggleEditState(true));
     const path = `/blog/edit/${blog.id}`;
     history.push(path);
