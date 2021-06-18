@@ -79,6 +79,7 @@ export const allBlogs = (state: RootState): blogState["blogs"] =>
 export const selectedBlog = (state: RootState): blogState["selectedBlog"] =>
   state.blog.selectedBlog;
 
-export const edit = (state: RootState): blogState["edit"] => state.blog.edit;
+export const getEditState = (state: RootState): blogState["edit"] =>
+  state.blog.edit;
 
 export default blogSlice.reducer;
