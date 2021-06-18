@@ -37,7 +37,6 @@ const BlogForm = () => {
     history.push("/");
   };
 
-  console.log(blog);
   return (
     <div className={styles.blogWrapper}>
       <form onSubmit={handleSubmit(handleCreate)} className={styles.form}>
