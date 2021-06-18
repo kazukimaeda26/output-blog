@@ -20,12 +20,16 @@ const Header: React.FC<Inputs> = () => {
     const path = "/blog/new";
     history.push(path);
   };
+  const transitionToRootPath = () => {
+    dispatch(toggleEditState(false));
+    history.push("/");
+  };
 
   return (
     <div className={styles.headerWrapper}>
-      <Link to="/" className={styles.titleWrapper}>
+      <div className={styles.titleWrapper} onClick={transitionToRootPath}>
         <div className={styles.title}>Dash Board</div>
-      </Link>
+      </div>
       {editState ? null : (
         <Button
           variant="contained"
