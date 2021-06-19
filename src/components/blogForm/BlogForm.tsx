@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
+import marked from "marked";
 
 import styles from "./BlogForm.module.scss";
 import {
@@ -111,9 +112,15 @@ const BlogForm: React.FC = () => {
           </div>
           <div className={styles.writtenCharaWrapper}>
             <div className={styles.title} id="titleDOM">
-              {tmpBlog.tmpTitle}
+              <span
+                dangerouslySetInnerHTML={{ __html: marked(tmpBlog.tmpTitle) }}
+              />
             </div>
-            <div className={styles.text}>{tmpBlog.tmpText}</div>
+            <div className={styles.text}>
+              <span
+                dangerouslySetInnerHTML={{ __html: marked(tmpBlog.tmpText) }}
+              />
+            </div>
           </div>
         </div>
         <div className={styles.buttonWrapper}>
