@@ -37,7 +37,7 @@ interface paramTypes {
 const BlogForm: React.FC = () => {
   const blog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
-  const TmpBlog = useSelector(getTmpBlog);
+  const tmpBlog = useSelector(getTmpBlog);
 
   const dispatch = useDispatch();
   const { handleSubmit, register } = useForm();
@@ -45,13 +45,18 @@ const BlogForm: React.FC = () => {
 
   const history = useHistory();
 
-  const handleCreate = (data: Inputs) => {
-    dispatch(createBlog(data));
+  const handleCreate = () => {
+    const sendData = { blogTitle: tmpBlog.tmpTitle, blogText: tmpBlog.tmpText };
+    dispatch(createBlog(sendData));
     dispatch(resetTmpTitleAndText(""));
     history.push("/");
   };
   const handleEdit = (data: Inputs) => {
-    const sendData = { ...data, blogId: blogId };
+    const sendData = {
+      blogId: blogId,
+      blogTitle: tmpBlog.tmpTitle,
+      blogText: tmpBlog.tmpText,
+    };
     dispatch(updateBlog(sendData));
     dispatch(resetTmpTitleAndText(""));
     history.push("/");
@@ -65,7 +70,6 @@ const BlogForm: React.FC = () => {
 
   return (
     <>
-      <SimpleMDE onChange={(event) => console.log(event)} />
       <form
         onSubmit={
           editState ? handleSubmit(handleEdit) : handleSubmit(handleCreate)
@@ -84,7 +88,15 @@ const BlogForm: React.FC = () => {
               inputRef={register}
               onChange={(event) => handleTitleChange(event.target.value)}
             />
-            <TextField
+            {/* <div className={styles.textWrapper}> */}
+            <SimpleMDE
+              onChange={(event) => handleTextChange(event)}
+              className={styles.text}
+              value={tmpBlog.tmpText}
+            />
+            {/* </div> */}
+
+            {/* <TextField
               id="text"
               className={styles.text}
               label="Markdown記法が利用可能です。"
@@ -95,13 +107,13 @@ const BlogForm: React.FC = () => {
               name="blogText"
               inputRef={register}
               onChange={(event) => handleTextChange(event.target.value)}
-            />
+            /> */}
           </div>
           <div className={styles.writtenCharaWrapper}>
             <div className={styles.title} id="titleDOM">
-              {TmpBlog.tmpTitle}
+              {tmpBlog.tmpTitle}
             </div>
-            <div className={styles.text}>{TmpBlog.tmpText}</div>
+            <div className={styles.text}>{tmpBlog.tmpText}</div>
           </div>
         </div>
         <div className={styles.buttonWrapper}>
