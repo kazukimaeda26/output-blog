@@ -92,6 +92,10 @@ export const blogSlice = createSlice({
     changeTmpText: (state, action) => {
       state.tmpBlog.tmpText = action.payload;
     },
+    setTmpBlog: (state, action) => {
+      state.tmpBlog.tmpTitle = state.selectedBlog.title;
+      state.tmpBlog.tmpText = state.selectedBlog.text;
+    },
   },
 });
 export const {
@@ -103,6 +107,7 @@ export const {
   changeTmpTitle,
   changeTmpText,
   resetTmpTitleAndText,
+  setTmpBlog,
 } = blogSlice.actions;
 
 export const allBlogs = (state: RootState): blogState["blogs"] =>

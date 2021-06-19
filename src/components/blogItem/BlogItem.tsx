@@ -9,6 +9,7 @@ import {
   selectBlog,
   toggleEditState,
   deleteBlog,
+  setTmpBlog,
 } from "../../features/blog/blogSlice";
 import { useHistory } from "react-router-dom";
 import styles from "./BlogItem.module.scss";
@@ -31,6 +32,7 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
   const handleEditBlog = () => {
     dispatch(selectBlog(blog));
     dispatch(toggleEditState(true));
+    dispatch(setTmpBlog(""));
     const path = `/blog/edit/${blog.id}`;
     history.push(path);
   };
