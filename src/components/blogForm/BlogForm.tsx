@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
 
 import styles from "./BlogForm.module.scss";
 import {
@@ -34,7 +36,6 @@ interface paramTypes {
 
 const BlogForm: React.FC = () => {
   const blog = useSelector(getSelectedBlog);
-  const tmpBlog = useSelector(getTmpBlog);
   const editState = useSelector(getEditState);
   const TmpBlog = useSelector(getTmpBlog);
 
@@ -63,56 +64,59 @@ const BlogForm: React.FC = () => {
   };
 
   return (
-    <form
-      onSubmit={
-        editState ? handleSubmit(handleEdit) : handleSubmit(handleCreate)
-      }
-      className={styles.form}
-    >
-      <div className={styles.blogWrapper}>
-        <div className={styles.inputWrapper}>
-          <TextField
-            id="title"
-            className={styles.title}
-            label="タイトル"
-            variant="outlined"
-            defaultValue={editState ? blog.title : ""}
-            name="blogTitle"
-            inputRef={register}
-            onChange={(event) => handleTitleChange(event.target.value)}
-          />
-          <TextField
-            id="text"
-            className={styles.text}
-            label="Markdown記法が利用可能です。"
-            multiline
-            rows={20}
-            defaultValue={editState ? blog.text : ""}
-            variant="outlined"
-            name="blogText"
-            inputRef={register}
-            onChange={(event) => handleTextChange(event.target.value)}
-          />
-        </div>
-        <div className={styles.writtenCharaWrapper}>
-          <div className={styles.title} id="titleDOM">
-            {TmpBlog.tmpTitle}
+    <>
+      <SimpleMDE onChange={(event) => console.log(event)} />
+      <form
+        onSubmit={
+          editState ? handleSubmit(handleEdit) : handleSubmit(handleCreate)
+        }
+        className={styles.form}
+      >
+        <div className={styles.blogWrapper}>
+          <div className={styles.inputWrapper}>
+            <TextField
+              id="title"
+              className={styles.title}
+              label="タイトル"
+              variant="outlined"
+              defaultValue={editState ? blog.title : ""}
+              name="blogTitle"
+              inputRef={register}
+              onChange={(event) => handleTitleChange(event.target.value)}
+            />
+            <TextField
+              id="text"
+              className={styles.text}
+              label="Markdown記法が利用可能です。"
+              multiline
+              rows={20}
+              defaultValue={editState ? blog.text : ""}
+              variant="outlined"
+              name="blogText"
+              inputRef={register}
+              onChange={(event) => handleTextChange(event.target.value)}
+            />
           </div>
-          <div className={styles.text}>{TmpBlog.tmpText}</div>
+          <div className={styles.writtenCharaWrapper}>
+            <div className={styles.title} id="titleDOM">
+              {TmpBlog.tmpTitle}
+            </div>
+            <div className={styles.text}>{TmpBlog.tmpText}</div>
+          </div>
         </div>
-      </div>
-      <div className={styles.buttonWrapper}>
-        {editState ? (
-          <Button type="submit" className={styles.button}>
-            記事を更新
-          </Button>
-        ) : (
-          <Button type="submit" className={styles.button}>
-            記事を投稿
-          </Button>
-        )}
-      </div>
-    </form>
+        <div className={styles.buttonWrapper}>
+          {editState ? (
+            <Button type="submit" className={styles.button}>
+              記事を更新
+            </Button>
+          ) : (
+            <Button type="submit" className={styles.button}>
+              記事を投稿
+            </Button>
+          )}
+        </div>
+      </form>
+    </>
   );
 };
 
