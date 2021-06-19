@@ -16,6 +16,7 @@ import {
   changeTmpTitle,
   changeTmpText,
   getTmpBlog,
+  resetTmpTitleAndText,
 } from "../../features/blog/blogSlice";
 
 interface Inputs {
@@ -34,26 +35,26 @@ interface paramTypes {
 const BlogForm: React.FC = () => {
   const blog = useSelector(getSelectedBlog);
   const tmpBlog = useSelector(getTmpBlog);
-  console.log(tmpBlog);
   const editState = useSelector(getEditState);
+  const TmpBlog = useSelector(getTmpBlog);
 
   const dispatch = useDispatch();
   const { handleSubmit, register } = useForm();
-
-  const history = useHistory();
-  const handleCreate = (data: Inputs) => {
-    dispatch(createBlog(data));
-    history.push("/");
-  };
-
   const { blogId } = useParams<paramTypes>();
 
+  const history = useHistory();
+
+  const handleCreate = (data: Inputs) => {
+    dispatch(createBlog(data));
+    dispatch(resetTmpTitleAndText(""));
+    history.push("/");
+  };
   const handleEdit = (data: Inputs) => {
     const sendData = { ...data, blogId: blogId };
     dispatch(updateBlog(sendData));
+    dispatch(resetTmpTitleAndText(""));
     history.push("/");
   };
-
   const handleTitleChange = (input: string) => {
     dispatch(changeTmpTitle(input));
   };
@@ -95,9 +96,9 @@ const BlogForm: React.FC = () => {
         </div>
         <div className={styles.writtenCharaWrapper}>
           <div className={styles.title} id="titleDOM">
-            title ga kokoni
+            {TmpBlog.tmpTitle}
           </div>
-          <div className={styles.text}>text ga kokoni</div>
+          <div className={styles.text}>{TmpBlog.tmpText}</div>
         </div>
       </div>
       <div className={styles.buttonWrapper}>

@@ -76,6 +76,10 @@ export const blogSlice = createSlice({
       console.log(action.payload.id);
       state.blogs = state.blogs.filter((blog) => blog.id !== action.payload.id);
     },
+    resetTmpTitleAndText: (state, action) => {
+      state.tmpBlog.tmpTitle = action.payload;
+      state.tmpBlog.tmpText = action.payload;
+    },
     selectBlog: (state, action) => {
       state.selectedBlog = action.payload;
     },
@@ -98,6 +102,7 @@ export const {
   toggleEditState,
   changeTmpTitle,
   changeTmpText,
+  resetTmpTitleAndText,
 } = blogSlice.actions;
 
 export const allBlogs = (state: RootState): blogState["blogs"] =>
