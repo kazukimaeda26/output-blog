@@ -17,6 +17,7 @@
     "dayjs": "^1.10.5",
     "easymde": "^2.15.0",
     "highlightjs": "^9.16.2",
+    "json-server": "^0.16.3",
     "marked": "^2.1.1",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
