@@ -5,7 +5,10 @@ import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
-import { toggleEditState } from "../../features/blog/blogSlice";
+import {
+  resetTmpTitleAndText,
+  toggleEditState,
+} from "../../features/blog/blogSlice";
 
 type Inputs = {
   edit?: boolean;
@@ -21,6 +24,7 @@ const Header: React.FC<Inputs> = () => {
   };
   const transitionToRootPath = () => {
     dispatch(toggleEditState(false));
+    dispatch(resetTmpTitleAndText(""));
     history.push("/");
   };
 
