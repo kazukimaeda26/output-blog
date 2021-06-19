@@ -13,6 +13,9 @@ import {
   updateBlog,
   getSelectedBlog,
   getEditState,
+  changeTmpTitle,
+  changeTmpText,
+  getTmpBlog,
 } from "../../features/blog/blogSlice";
 
 interface Inputs {
@@ -30,6 +33,8 @@ interface paramTypes {
 
 const BlogForm: React.FC = () => {
   const blog = useSelector(getSelectedBlog);
+  const tmpBlog = useSelector(getTmpBlog);
+  console.log(tmpBlog);
   const editState = useSelector(getEditState);
 
   const dispatch = useDispatch();
@@ -49,6 +54,13 @@ const BlogForm: React.FC = () => {
     history.push("/");
   };
 
+  const handleTitleChange = (input: string) => {
+    dispatch(changeTmpTitle(input));
+  };
+  const handleTextChange = (input: string) => {
+    dispatch(changeTmpText(input));
+  };
+
   return (
     <form
       onSubmit={
@@ -59,30 +71,32 @@ const BlogForm: React.FC = () => {
       <div className={styles.blogWrapper}>
         <div className={styles.inputWrapper}>
           <TextField
-            id="outlined-basic"
+            id="title"
             className={styles.title}
-            label="New Blog"
+            label="タイトル"
             variant="outlined"
-            defaultValue={
-              editState ? blog.title : "タイトルをここにかきましょう！"
-            }
+            defaultValue={editState ? blog.title : ""}
             name="blogTitle"
             inputRef={register}
+            onChange={(event) => handleTitleChange(event.target.value)}
           />
           <TextField
-            id="outlined-multiline-static"
+            id="text"
             className={styles.text}
-            label="Multiline"
+            label="Markdown記法が利用可能です。"
             multiline
             rows={20}
-            defaultValue={editState ? blog.text : "内容をここにかきましょう！"}
+            defaultValue={editState ? blog.text : ""}
             variant="outlined"
             name="blogText"
             inputRef={register}
+            onChange={(event) => handleTextChange(event.target.value)}
           />
         </div>
         <div className={styles.writtenCharaWrapper}>
-          <div className={styles.title}>title ga kokoni</div>
+          <div className={styles.title} id="titleDOM">
+            title ga kokoni
+          </div>
           <div className={styles.text}>text ga kokoni</div>
         </div>
       </div>

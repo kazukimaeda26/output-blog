@@ -20,6 +20,10 @@ export interface blogState {
     likes: number;
   };
   edit: boolean;
+  tmpBlog: {
+    tmpTitle: string;
+    tmpText: string;
+  };
 }
 
 const initialState: blogState = {
@@ -34,6 +38,10 @@ const initialState: blogState = {
     likes: 0,
   },
   edit: false,
+  tmpBlog: {
+    tmpTitle: "",
+    tmpText: "",
+  },
 };
 
 export const blogSlice = createSlice({
@@ -74,6 +82,12 @@ export const blogSlice = createSlice({
     toggleEditState: (state, action) => {
       state.edit = action.payload;
     },
+    changeTmpTitle: (state, action) => {
+      state.tmpBlog.tmpTitle = action.payload;
+    },
+    changeTmpText: (state, action) => {
+      state.tmpBlog.tmpText = action.payload;
+    },
   },
 });
 export const {
@@ -82,6 +96,8 @@ export const {
   deleteBlog,
   selectBlog,
   toggleEditState,
+  changeTmpTitle,
+  changeTmpText,
 } = blogSlice.actions;
 
 export const allBlogs = (state: RootState): blogState["blogs"] =>
@@ -92,5 +108,8 @@ export const getSelectedBlog = (state: RootState): blogState["selectedBlog"] =>
 
 export const getEditState = (state: RootState): blogState["edit"] =>
   state.blog.edit;
+
+export const getTmpBlog = (state: RootState): blogState["tmpBlog"] =>
+  state.blog.tmpBlog;
 
 export default blogSlice.reducer;
