@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 // import sampleData from "./sampleData.json";
-
+import firebase from "firebase/app";
 import { db } from "../../firebase";
 export interface blogState {
   idCount: number;
@@ -53,6 +53,9 @@ export const fetchBlogs = createAsyncThunk("blog/getAllBlogs", async () => {
     id: doc.id,
     title: doc.data().title,
     text: doc.data().text,
+    createdAt: doc.data().createdAt,
+    updatedAt: doc.data().updatedAt,
+    likes: doc.data().likes,
   }));
   const blogNumber = allBlogs.length;
   const passData = { allBlogs, blogNumber };
@@ -64,28 +67,28 @@ export const blogSlice = createSlice({
   initialState,
   reducers: {
     createBlog: (state, action) => {
-      state.idCount++;
-      const now = new Date();
-      const newBlog = {
-        id: state.idCount,
-        title: action.payload.blogTitle,
-        text: action.payload.blogText,
-        createdAt: now.toLocaleString(),
-        updatedAt: now.toLocaleString(),
-        likes: 0,
-      };
-      state.blogs = [newBlog, ...state.blogs];
+      // state.idCount++;
+      // const now = new Date();
+      // const newBlog = {
+      //   id: state.idCount,
+      //   title: action.payload.blogTitle,
+      //   text: action.payload.blogText,
+      //   createdAt: now.toLocaleString(),
+      //   updatedAt: now.toLocaleString(),
+      //   likes: 0,
+      // };
+      // state.blogs = [newBlog, ...state.blogs];
     },
     updateBlog: (state, action) => {
-      const now = new Date();
-      const editBlog = state.blogs.find(
-        (blog) => blog.id === Number(action.payload.blogId)
-      );
-      if (editBlog) {
-        editBlog.title = action.payload.blogTitle;
-        editBlog.text = action.payload.blogText;
-        editBlog.updatedAt = now.toLocaleString();
-      }
+      // const now = new Date();
+      // const editBlog = state.blogs.find(
+      //   (blog) => blog.id === Number(action.payload.blogId)
+      // );
+      // if (editBlog) {
+      //   editBlog.title = action.payload.blogTitle;
+      //   editBlog.text = action.payload.blogText;
+      //   editBlog.updatedAt = now.toLocaleString();
+      // }
     },
     deleteBlog: (state, action) => {
       console.log(action.payload.id);
@@ -111,12 +114,13 @@ export const blogSlice = createSlice({
       state.tmpBlog.tmpTitle = state.selectedBlog.title;
       state.tmpBlog.tmpText = state.selectedBlog.text;
     },
-    extraReducers: (builder) => {
-      builder.addCase(fetchBlogs.fulfilled, (state, action) => {
-        state.blogs = action.payload.allBlogs;
-        state.idCount = action.payload.blogNumber;
-      });
-    },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(fetchBlogs.fulfilled, (state, action) => {
+      state.blogs = action.payload.allBlogs;
+      state.idCount = action.payload.blogNumber;
+    });
   },
 });
 export const {
