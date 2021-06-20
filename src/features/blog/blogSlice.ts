@@ -4,7 +4,7 @@ import { RootState } from "../../app/store";
 export interface blogState {
   idCount: number;
   blogs: {
-    id: number;
+    id: string;
     title: string;
     text: string;
     createdAt: string;
@@ -12,7 +12,7 @@ export interface blogState {
     likes: number;
   }[];
   selectedBlog: {
-    id: number;
+    id: string;
     title: string;
     text: string;
     createdAt: string;
@@ -30,7 +30,7 @@ const initialState: blogState = {
   idCount: 0,
   blogs: [],
   selectedBlog: {
-    id: 1,
+    id: "",
     title: "",
     text: "",
     createdAt: "",
