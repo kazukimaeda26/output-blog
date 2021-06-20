@@ -62,23 +62,43 @@ export const fetchBlogs = createAsyncThunk("blog/getAllBlogs", async () => {
   return passData;
 });
 
+// blogの新規作成
+export const createBlog = async (
+  title: string,
+  text: string
+): Promise<void> => {
+  try {
+    const dateTime = firebase.firestore.Timestamp.fromDate(new Date());
+    await db.collection("blogs").add({
+      title: title,
+      text: text,
+      dateTime: dateTime,
+      likes: 0,
+      createdAt: "20210619",
+      updatedAt: "20210620",
+    });
+  } catch (err) {
+    console.log("Error writing blog", err);
+  }
+};
+
 export const blogSlice = createSlice({
   name: "blog",
   initialState,
   reducers: {
-    createBlog: (state, action) => {
-      // state.idCount++;
-      // const now = new Date();
-      // const newBlog = {
-      //   id: state.idCount,
-      //   title: action.payload.blogTitle,
-      //   text: action.payload.blogText,
-      //   createdAt: now.toLocaleString(),
-      //   updatedAt: now.toLocaleString(),
-      //   likes: 0,
-      // };
-      // state.blogs = [newBlog, ...state.blogs];
-    },
+    // createBlog: (state, action) => {
+    // state.idCount++;
+    // const now = new Date();
+    // const newBlog = {
+    //   id: state.idCount,
+    //   title: action.payload.blogTitle,
+    //   text: action.payload.blogText,
+    //   createdAt: now.toLocaleString(),
+    //   updatedAt: now.toLocaleString(),
+    //   likes: 0,
+    // };
+    // state.blogs = [newBlog, ...state.blogs];
+    // },
     updateBlog: (state, action) => {
       // const now = new Date();
       // const editBlog = state.blogs.find(
@@ -123,7 +143,7 @@ export const blogSlice = createSlice({
   },
 });
 export const {
-  createBlog,
+  // createBlog,
   updateBlog,
   deleteBlog,
   selectBlog,
