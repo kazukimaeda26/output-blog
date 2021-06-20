@@ -38,7 +38,7 @@ interface paramTypes {
 }
 
 const BlogForm: React.FC = () => {
-  const blog = useSelector(getSelectedBlog);
+  const selectedBlog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
   const tmpBlog = useSelector(getTmpBlog);
 
@@ -54,14 +54,15 @@ const BlogForm: React.FC = () => {
     dispatch(fetchBlogs());
     history.push("/");
   };
-  const handleEdit = (data: Inputs) => {
+  const handleEdit = async (data: Inputs) => {
     const sendData = {
-      blogId: blogId,
-      blogTitle: tmpBlog.tmpTitle,
-      blogText: tmpBlog.tmpText,
+      ...selectedBlog,
+      title: tmpBlog.tmpTitle,
+      text: tmpBlog.tmpText,
     };
-    dispatch(updateBlog(sendData));
+    await updateBlog(sendData);
     dispatch(resetTmpTitleAndText(""));
+    dispatch(fetchBlogs());
     history.push("/");
   };
   const handleTitleChange = (input: string) => {
@@ -86,7 +87,7 @@ const BlogForm: React.FC = () => {
               className={styles.title}
               label="タイトル"
               variant="outlined"
-              defaultValue={editState ? blog.title : ""}
+              defaultValue={editState ? selectedBlog.title : ""}
               name="blogTitle"
               inputRef={register}
               onChange={(event) => handleTitleChange(event.target.value)}
