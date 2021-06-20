@@ -10,6 +10,7 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import marked from "marked";
 
+import { AppDispatch } from "../../app/store";
 import styles from "./BlogForm.module.scss";
 import {
   createBlog,
@@ -20,6 +21,7 @@ import {
   changeTmpText,
   getTmpBlog,
   resetTmpTitleAndText,
+  fetchBlogs,
 } from "../../features/blog/blogSlice";
 
 interface Inputs {
@@ -40,16 +42,16 @@ const BlogForm: React.FC = () => {
   const editState = useSelector(getEditState);
   const tmpBlog = useSelector(getTmpBlog);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const { handleSubmit, register } = useForm();
   const { blogId } = useParams<paramTypes>();
 
   const history = useHistory();
 
-  const handleCreate = () => {
-    const sendData = { blogTitle: tmpBlog.tmpTitle, blogText: tmpBlog.tmpText };
-    dispatch(createBlog(sendData));
+  const handleCreate = async () => {
+    await createBlog(tmpBlog.tmpTitle, tmpBlog.tmpText);
     dispatch(resetTmpTitleAndText(""));
+    dispatch(fetchBlogs());
     history.push("/");
   };
   const handleEdit = (data: Inputs) => {
