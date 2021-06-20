@@ -16,7 +16,7 @@ import styles from "./BlogItem.module.scss";
 
 interface propType {
   blog: {
-    id: number;
+    id: string;
     title: string;
     text: string;
     createdAt: string;
