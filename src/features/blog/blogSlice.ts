@@ -68,17 +68,46 @@ export const createBlog = async (
   text: string
 ): Promise<void> => {
   try {
-    const dateTime = firebase.firestore.Timestamp.fromDate(new Date());
+    const now = new Date();
+    const dateTime = firebase.firestore.Timestamp.fromDate(now);
+    console.log(now.toLocaleString());
     await db.collection("blogs").add({
       title: title,
       text: text,
       dateTime: dateTime,
       likes: 0,
-      createdAt: "20210619",
-      updatedAt: "20210620",
+      createdAt: now.toLocaleString(),
+      updatedAt: "",
     });
   } catch (err) {
     console.log("Error writing blog", err);
+  }
+};
+
+// blogの編集
+export const updateBlog = async (submitData: {
+  id: string;
+  title: string;
+  text: string;
+  updatedAt: string;
+  likes: number;
+}): Promise<void> => {
+  const { id, title, text, likes } = submitData;
+  const now = new Date();
+  const dateTime = firebase.firestore.Timestamp.fromDate(now);
+  try {
+    await db.collection("blogs").doc(id).set(
+      {
+        title: title,
+        text: text,
+        likes: likes,
+        dateTime: dateTime,
+        updatedAt: now.toLocaleString(),
+      },
+      { merge: true }
+    );
+  } catch (err) {
+    console.log("Error updating document:", err);
   }
 };
 
@@ -99,17 +128,17 @@ export const blogSlice = createSlice({
     // };
     // state.blogs = [newBlog, ...state.blogs];
     // },
-    updateBlog: (state, action) => {
-      // const now = new Date();
-      // const editBlog = state.blogs.find(
-      //   (blog) => blog.id === Number(action.payload.blogId)
-      // );
-      // if (editBlog) {
-      //   editBlog.title = action.payload.blogTitle;
-      //   editBlog.text = action.payload.blogText;
-      //   editBlog.updatedAt = now.toLocaleString();
-      // }
-    },
+    // updateBlog: (state, action) => {
+    // const now = new Date();
+    // const editBlog = state.blogs.find(
+    //   (blog) => blog.id === Number(action.payload.blogId)
+    // );
+    // if (editBlog) {
+    //   editBlog.title = action.payload.blogTitle;
+    //   editBlog.text = action.payload.blogText;
+    //   editBlog.updatedAt = now.toLocaleString();
+    // }
+    // },
     deleteBlog: (state, action) => {
       state.blogs = state.blogs.filter((blog) => blog.id !== action.payload.id);
     },
@@ -144,7 +173,7 @@ export const blogSlice = createSlice({
 });
 export const {
   // createBlog,
-  updateBlog,
+  // updateBlog,
   deleteBlog,
   selectBlog,
   toggleEditState,
