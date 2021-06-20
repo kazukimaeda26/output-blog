@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { doc } from "prettier";
 import { RootState } from "../../app/store";
 // import sampleData from "./sampleData.json";
 
@@ -111,6 +110,12 @@ export const blogSlice = createSlice({
     setTmpBlog: (state, action) => {
       state.tmpBlog.tmpTitle = state.selectedBlog.title;
       state.tmpBlog.tmpText = state.selectedBlog.text;
+    },
+    extraReducers: (builder) => {
+      builder.addCase(fetchBlogs.fulfilled, (state, action) => {
+        state.blogs = action.payload.allBlogs;
+        state.idCount = action.payload.blogNumber;
+      });
     },
   },
 });
