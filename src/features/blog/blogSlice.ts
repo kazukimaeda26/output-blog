@@ -1,6 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { doc } from "prettier";
 import { RootState } from "../../app/store";
 // import sampleData from "./sampleData.json";
+
+import { db } from "../../firebase";
 export interface blogState {
   idCount: number;
   blogs: {
@@ -43,6 +46,19 @@ const initialState: blogState = {
     tmpText: "",
   },
 };
+
+// blogの全件取得
+export const fetchBlogs = createAsyncThunk("blog/getAllBlogs", async () => {
+  const res = await db.collection("blogs").orderBy("dateTime", "desc").get();
+  const allBlogs = res.docs.map((doc) => ({
+    id: doc.id,
+    title: doc.data().title,
+    text: doc.data().text,
+  }));
+  const blogNumber = allBlogs.length;
+  const passData = { allBlogs, blogNumber };
+  return passData;
+});
 
 export const blogSlice = createSlice({
   name: "blog",
