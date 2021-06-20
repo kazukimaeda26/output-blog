@@ -91,7 +91,6 @@ export const blogSlice = createSlice({
       // }
     },
     deleteBlog: (state, action) => {
-      console.log(action.payload.id);
       state.blogs = state.blogs.filter((blog) => blog.id !== action.payload.id);
     },
     resetTmpTitleAndText: (state, action) => {
