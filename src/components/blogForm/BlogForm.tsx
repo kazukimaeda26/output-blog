@@ -10,6 +10,7 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import marked from "marked";
 
+import { AppDispatch } from "../../app/store";
 import styles from "./BlogForm.module.scss";
 import {
   createBlog,
@@ -20,6 +21,7 @@ import {
   changeTmpText,
   getTmpBlog,
   resetTmpTitleAndText,
+  fetchBlogs,
 } from "../../features/blog/blogSlice";
 
 interface Inputs {
@@ -36,30 +38,31 @@ interface paramTypes {
 }
 
 const BlogForm: React.FC = () => {
-  const blog = useSelector(getSelectedBlog);
+  const selectedBlog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
   const tmpBlog = useSelector(getTmpBlog);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
   const { handleSubmit, register } = useForm();
   const { blogId } = useParams<paramTypes>();
 
   const history = useHistory();
 
-  const handleCreate = () => {
-    const sendData = { blogTitle: tmpBlog.tmpTitle, blogText: tmpBlog.tmpText };
-    dispatch(createBlog(sendData));
+  const handleCreate = async () => {
+    await createBlog(tmpBlog.tmpTitle, tmpBlog.tmpText);
     dispatch(resetTmpTitleAndText(""));
+    dispatch(fetchBlogs());
     history.push("/");
   };
-  const handleEdit = (data: Inputs) => {
+  const handleEdit = async (data: Inputs) => {
     const sendData = {
-      blogId: blogId,
-      blogTitle: tmpBlog.tmpTitle,
-      blogText: tmpBlog.tmpText,
+      ...selectedBlog,
+      title: tmpBlog.tmpTitle,
+      text: tmpBlog.tmpText,
     };
-    dispatch(updateBlog(sendData));
+    await updateBlog(sendData);
     dispatch(resetTmpTitleAndText(""));
+    dispatch(fetchBlogs());
     history.push("/");
   };
   const handleTitleChange = (input: string) => {
@@ -84,7 +87,7 @@ const BlogForm: React.FC = () => {
               className={styles.title}
               label="タイトル"
               variant="outlined"
-              defaultValue={editState ? blog.title : ""}
+              defaultValue={editState ? selectedBlog.title : ""}
               name="blogTitle"
               inputRef={register}
               onChange={(event) => handleTitleChange(event.target.value)}
