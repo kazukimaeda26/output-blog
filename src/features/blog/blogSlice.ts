@@ -111,6 +111,15 @@ export const updateBlog = async (submitData: {
   }
 };
 
+// blogの削除
+export const deleteBlog = async (id: string): Promise<void> => {
+  try {
+    await db.collection("blogs").doc(id).delete();
+  } catch (err) {
+    console.log("Error removing dfocument", err);
+  }
+};
+
 export const blogSlice = createSlice({
   name: "blog",
   initialState,
@@ -139,9 +148,9 @@ export const blogSlice = createSlice({
     //   editBlog.updatedAt = now.toLocaleString();
     // }
     // },
-    deleteBlog: (state, action) => {
-      state.blogs = state.blogs.filter((blog) => blog.id !== action.payload.id);
-    },
+    // deleteBlog: (state, action) => {
+    //   state.blogs = state.blogs.filter((blog) => blog.id !== action.payload.id);
+    // },
     resetTmpTitleAndText: (state, action) => {
       state.tmpBlog.tmpTitle = action.payload;
       state.tmpBlog.tmpText = action.payload;
@@ -174,7 +183,7 @@ export const blogSlice = createSlice({
 export const {
   // createBlog,
   // updateBlog,
-  deleteBlog,
+  // deleteBlog,
   selectBlog,
   toggleEditState,
   changeTmpTitle,
