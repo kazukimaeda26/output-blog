@@ -10,6 +10,7 @@ import {
   toggleEditState,
   deleteBlog,
   setTmpBlog,
+  fetchBlogs,
 } from "../../features/blog/blogSlice";
 import { useHistory } from "react-router-dom";
 import styles from "./BlogItem.module.scss";
@@ -37,8 +38,9 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
     history.push(path);
   };
 
-  const handleDeleteBlog = () => {
-    dispatch(deleteBlog(blog));
+  const handleDeleteBlog = async (id: string) => {
+    await deleteBlog(id);
+    dispatch(fetchBlogs());
   };
 
   return (
@@ -56,7 +58,10 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
           </div>
         </TableCell>
         <TableCell align="center">
-          <div className={styles.iconWrapper} onClick={handleDeleteBlog}>
+          <div
+            className={styles.iconWrapper}
+            onClick={() => handleDeleteBlog(blog.id)}
+          >
             <DeleteIcon className={styles.deleteIcon} />
             削除
           </div>
