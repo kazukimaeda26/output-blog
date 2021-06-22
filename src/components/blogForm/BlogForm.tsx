@@ -38,6 +38,14 @@ interface paramTypes {
 }
 
 const BlogForm: React.FC = () => {
+  const AWS_ACCESS_KEY = process.env.REACT_APP_AWS_ACCESS_KEY;
+  const AWS_SECRET_KEY = process.env.REACT_APP_AWS_SECRET_KEY;
+  const BUCKET = process.env.REACT_APP_BUCKET;
+
+  console.log(AWS_ACCESS_KEY);
+  console.log(AWS_SECRET_KEY);
+  console.log(BUCKET);
+
   const selectedBlog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
   const tmpBlog = useSelector(getTmpBlog);
