@@ -72,6 +72,16 @@ const BlogForm: React.FC = () => {
     dispatch(changeTmpText(input));
   };
 
+  function handleDrop(data: any, e: any) {
+    let files = e.dataTransfer.files;
+    console.log(files);
+    if (files.length > 0) {
+      let file = files[0];
+      console.log(file);
+      alert("FileName : " + file.name);
+    }
+  }
+
   return (
     <>
       <form
@@ -94,7 +104,8 @@ const BlogForm: React.FC = () => {
             />
             {/* <div className={styles.textWrapper}> */}
             <SimpleMDE
-              onChange={(event) => handleTextChange(event)}
+              onChange={(e) => handleTextChange(e)}
+              events={{ drop: handleDrop }}
               className={styles.text}
               value={tmpBlog.tmpText}
             />
