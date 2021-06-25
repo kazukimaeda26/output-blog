@@ -42,10 +42,6 @@ const BlogForm: React.FC = () => {
   const AWS_SECRET_KEY = process.env.REACT_APP_AWS_SECRET_KEY;
   const BUCKET = process.env.REACT_APP_BUCKET;
 
-  console.log(AWS_ACCESS_KEY);
-  console.log(AWS_SECRET_KEY);
-  console.log(BUCKET);
-
   const selectedBlog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
   const tmpBlog = useSelector(getTmpBlog);
@@ -82,10 +78,8 @@ const BlogForm: React.FC = () => {
 
   function handleDrop(data: any, e: any) {
     let files = e.dataTransfer.files;
-    console.log(files);
     if (files.length > 0) {
       let file = files[0];
-      console.log(file);
       alert("FileName : " + file.name);
     }
   }

@@ -69,7 +69,6 @@ export const createBlog = async (
   try {
     const now = new Date();
     const dateTime = firebase.firestore.Timestamp.fromDate(now);
-    console.log(now.toLocaleString());
     await db.collection("blogs").add({
       title: title,
       text: text,
