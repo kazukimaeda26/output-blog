@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
 export interface userState {
   isAdmin: boolean;
 }
@@ -16,5 +17,8 @@ export const userSlice = createSlice({
   },
 });
 export const { toggleUserState } = userSlice.actions;
+
+export const getUserState = (state: RootState): userState["isAdmin"] =>
+  state.user.isAdmin;
 
 export default userSlice.reducer;
