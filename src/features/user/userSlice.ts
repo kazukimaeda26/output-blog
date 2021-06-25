@@ -11,12 +11,14 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    toggleUserState: (state) => {
+    toggleIsAdmin: (state) => {
+      console.log(state);
       state.isAdmin = !state.isAdmin;
+      console.log(state);
     },
   },
 });
-export const { toggleUserState } = userSlice.actions;
+export const { toggleIsAdmin } = userSlice.actions;
 
 export const getIsAdmin = (state: RootState): userState["isAdmin"] =>
   state.user.isAdmin;
