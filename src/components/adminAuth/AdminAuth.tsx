@@ -84,7 +84,9 @@ const AdminAuth: React.FC = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {isAdmin
+              ? "アドミンがtrueです"
+              : "アドミンがfalseです, アドミンとしてログインするかユーザーとして記事を見ましょう。"}
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -146,17 +148,17 @@ const AdminAuth: React.FC = () => {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              {isAdmin ? "すでにサインインしてます" : "Sign In"}
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  ログインせずにアウトプットを見に行く
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  aaa
                 </Link>
               </Grid>
             </Grid>
