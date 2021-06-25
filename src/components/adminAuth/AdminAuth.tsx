@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -17,8 +17,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { AppDispatch } from "../../app/store";
 import { getIsAdmin } from "../../features/user/userSlice";
 import { auth } from "../../firebase";
+import { toggleIsAdmin } from "../../features/user/userSlice";
 
 function Copyright() {
   return (
@@ -76,11 +78,13 @@ const AdminAuth: React.FC = () => {
   const { register, handleSubmit, errors } = useForm<AuthDataTypes>();
   const isAdmin = useSelector(getIsAdmin);
   const history = useHistory();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleSignUp = async (data: AuthDataTypes) => {
     const { email, password } = data;
     try {
       await auth.createUserWithEmailAndPassword(email, password);
+      dispatch(toggleIsAdmin());
       history.push("/");
     } catch (err) {
       alert(err.message);
