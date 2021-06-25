@@ -1,4 +1,5 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -59,8 +60,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+interface AuthDataTypes {
+  email: string;
+  password: string;
+}
+
 const AdminAuth: React.FC = () => {
   const classes = useStyles();
+  const { register, handleSubmit, errors } = useForm<AuthDataTypes>();
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -85,7 +92,21 @@ const AdminAuth: React.FC = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              error={Boolean(errors.email)}
+              helperText={errors.email && errors.email.message}
+              inputRef={register({
+                required: {
+                  value: true,
+                  message: "メールアドレスを入力してください。",
+                },
+                pattern: {
+                  value:
+                    /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/,
+                  message: "メールアドレスを正しい形で入力してください",
+                },
+              })}
             />
+
             <TextField
               variant="outlined"
               margin="normal"
@@ -96,6 +117,18 @@ const AdminAuth: React.FC = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              error={Boolean(errors.password)}
+              helperText={errors.password && errors.password.message}
+              inputRef={register({
+                required: {
+                  value: true,
+                  message: "passwordを入力してください。",
+                },
+                minLength: {
+                  value: 6,
+                  message: "passwordを6文字以上で入力してください.",
+                },
+              })}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
