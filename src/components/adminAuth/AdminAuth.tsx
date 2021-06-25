@@ -18,9 +18,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { AppDispatch } from "../../app/store";
-import { getIsAdmin } from "../../features/user/userSlice";
+import { getIsSignIn, getIsAdmin } from "../../features/user/userSlice";
 import { auth } from "../../firebase";
-import { toggleIsAdmin } from "../../features/user/userSlice";
+import { toggleIsSignIn, toggleIsAdmin } from "../../features/user/userSlice";
 
 function Copyright() {
   return (
@@ -77,6 +77,7 @@ const AdminAuth: React.FC = () => {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm<AuthDataTypes>();
   const isAdmin = useSelector(getIsAdmin);
+  const isSignIn = useSelector(getIsSignIn);
   const history = useHistory();
   const dispatch: AppDispatch = useDispatch();
 
@@ -84,14 +85,19 @@ const AdminAuth: React.FC = () => {
     const { email, password } = data;
     try {
       await auth.createUserWithEmailAndPassword(email, password);
-      dispatch(toggleIsAdmin());
       history.push("/");
     } catch (err) {
       alert(err.message);
     }
   };
-  const handleAAA = () => {
-    console.log("AAA");
+  const handleSignIn = async (data: AuthDataTypes) => {
+    const { email, password } = data;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      history.push("/");
+    } catch (err) {
+      alert(err.message);
+    }
   };
   return (
     <Grid container component="main" className={classes.root}>
@@ -103,15 +109,13 @@ const AdminAuth: React.FC = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            {isAdmin
-              ? "アドミンがtrueです"
-              : "アドミンがfalseです, アドミンとしてログインするかユーザーとして記事を見ましょう。"}
+            {isSignIn ? "ログイン" : "新規登録"}
           </Typography>
           <form
             className={classes.form}
             noValidate
             onSubmit={
-              isAdmin ? handleSubmit(handleAAA) : handleSubmit(handleSignUp)
+              isSignIn ? handleSubmit(handleSignIn) : handleSubmit(handleSignUp)
             }
           >
             <TextField
@@ -178,12 +182,18 @@ const AdminAuth: React.FC = () => {
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  ログインせずにアウトプットを見に行く
+                  aaaaa
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
-                  aaa
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={() => dispatch(toggleIsSignIn(!isSignIn))}
+                >
+                  {isSignIn
+                    ? "アカウントをお持ちでない方はこちら"
+                    : "アカウントをお持ちの方はこちら"}
                 </Link>
               </Grid>
             </Grid>
