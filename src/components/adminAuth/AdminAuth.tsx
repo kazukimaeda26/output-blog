@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -17,6 +18,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { getIsAdmin } from "../../features/user/userSlice";
+import { auth } from "../../firebase";
 
 function Copyright() {
   return (
@@ -73,7 +75,20 @@ const AdminAuth: React.FC = () => {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm<AuthDataTypes>();
   const isAdmin = useSelector(getIsAdmin);
+  const history = useHistory();
 
+  const handleSignUp = async (data: AuthDataTypes) => {
+    const { email, password } = data;
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+      history.push("/");
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+  const handleAAA = () => {
+    console.log("AAA");
+  };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -88,7 +103,13 @@ const AdminAuth: React.FC = () => {
               ? "アドミンがtrueです"
               : "アドミンがfalseです, アドミンとしてログインするかユーザーとして記事を見ましょう。"}
           </Typography>
-          <form className={classes.form} noValidate>
+          <form
+            className={classes.form}
+            noValidate
+            onSubmit={
+              isAdmin ? handleSubmit(handleAAA) : handleSubmit(handleSignUp)
+            }
+          >
             <TextField
               variant="outlined"
               margin="normal"
