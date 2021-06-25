@@ -16,7 +16,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { getUserState } from "../../features/user/userSlice";
+import { getIsAdmin } from "../../features/user/userSlice";
 
 function Copyright() {
   return (
@@ -72,8 +72,7 @@ interface AuthDataTypes {
 const AdminAuth: React.FC = () => {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm<AuthDataTypes>();
-  const userState = useSelector(getUserState);
-  console.log(userState);
+  const isAdmin = useSelector(getIsAdmin);
 
   return (
     <Grid container component="main" className={classes.root}>

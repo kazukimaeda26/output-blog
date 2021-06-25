@@ -18,7 +18,7 @@ export const userSlice = createSlice({
 });
 export const { toggleUserState } = userSlice.actions;
 
-export const getUserState = (state: RootState): userState["isAdmin"] =>
+export const getIsAdmin = (state: RootState): userState["isAdmin"] =>
   state.user.isAdmin;
 
 export default userSlice.reducer;
