@@ -12,7 +12,7 @@ const Routing = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/admin-auth" component={AdminAuth} />
-        <Route exact path="admin-home" component={AdminHome} />
+        <Route exact path="/admin-home" component={AdminHome} />
         <Route exact path="/blog/new" component={BlogNew} />
         <Route path="/blog/edit/:blogId" component={BlogEdit} />
       </Switch>
