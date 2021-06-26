@@ -10,3 +10,35 @@
     margin-top: 0px;
   }
 }
+
+.commentWrapper {
+  background-color: white;
+  border-radius: 1rem;
+  margin: 2.5rem;
+  padding: 1rem 2.5rem;
+  .commentLists {
+    .paragraph {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    .commentList {
+      padding: 1rem 0rem;
+      border-bottom: 1px gray dashed;
+    }
+  }
+  .commentForm {
+    .commentTextArea {
+      display: flex;
+      width: 100%;
+      div {
+        width: 100%;
+        textarea {
+          width: 100%;
+        }
+      }
+    }
+    .commentButton {
+      margin: 1rem;
+    }
+  }
+}

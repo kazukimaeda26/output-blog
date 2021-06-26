@@ -3,8 +3,11 @@ import marked from "marked";
 import { useSelector } from "react-redux";
 
 import Header from "../header/Header";
-import styles from "./BlogShow.module.scss";
 import { getSelectedBlog } from "../../features/blog/blogSlice";
+
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import styles from "./BlogShow.module.scss";
 
 const BlogShow: React.FC = () => {
   const selectedBlog = useSelector(getSelectedBlog);
@@ -29,6 +32,34 @@ const BlogShow: React.FC = () => {
             dangerouslySetInnerHTML={{ __html: marked(selectedBlog.text) }}
           />
         </div>
+      </div>
+      <div className={styles.commentWrapper}>
+        <div className={styles.commentLists}>
+          <p className={styles.paragraph}>コメント一覧</p>
+          <div className={styles.commentList}>仮コメント１</div>
+          <div className={styles.commentList}>仮コメント２</div>
+          <div className={styles.commentList}>仮コメント３</div>
+        </div>
+        <p>コメントを投稿する</p>
+        <form action="#" className={styles.commentForm}>
+          <div className={styles.commentTextArea}>
+            <TextField
+              id="outlined-multiline-static"
+              label="Multiline"
+              multiline
+              rows={4}
+              defaultValue=""
+              variant="outlined"
+            />
+          </div>
+          <Button
+            variant="outlined"
+            color="primary"
+            className={styles.commentButton}
+          >
+            投稿する
+          </Button>
+        </form>
       </div>
     </>
   );
