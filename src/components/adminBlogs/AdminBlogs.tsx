@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { useSelector } from "react-redux";
 import { allBlogs } from "../../features/blog/blogSlice";
-import BlogItem from "../blogItem/BlogItem";
+import AdminBlogItem from "../adminBlogItem/AdminBlogItem";
 
 const AdminBlogs: React.FC = () => {
   const blogs = useSelector(allBlogs);
@@ -30,7 +30,7 @@ const AdminBlogs: React.FC = () => {
         </TableHead>
         <TableBody>
           {blogs.map((blog) => (
-            <BlogItem key={blog.id} blog={blog} />
+            <AdminBlogItem key={blog.id} blog={blog} />
           ))}
         </TableBody>
       </Table>
