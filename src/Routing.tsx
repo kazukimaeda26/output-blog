@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./components/home/Home";
 import AdminAuth from "./components/adminAuth/AdminAuth";
+import AdminHome from "./components/adminHome/AdminHome";
 import BlogNew from "./components/blogNew/BlogNew";
 import BlogEdit from "./components/blogEdit/BlogEdit";
 
@@ -11,6 +12,7 @@ const Routing = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/admin-auth" component={AdminAuth} />
+        <Route exact path="admin-home" component={AdminHome} />
         <Route exact path="/blog/new" component={BlogNew} />
         <Route path="/blog/edit/:blogId" component={BlogEdit} />
       </Switch>
