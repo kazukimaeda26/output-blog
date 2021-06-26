@@ -1,8 +1,6 @@
 import React from "react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
 
 import { useDispatch } from "react-redux";
 import {
@@ -30,9 +28,23 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const addSelectedBlogAndTransition = () => {
+    dispatch(
+      selectBlog({
+        id: blog.id,
+        title: blog.title,
+        text: blog.text,
+        createdAt: blog.createdAt,
+        updatedAt: blog.updatedAt,
+        likes: blog.likes,
+      })
+    );
+    history.push(`/blog/${blog.id}`);
+  };
+
   return (
     <>
-      <TableRow key={blog.id} onClick={() => history.push(`/blog/${blog.id}`)}>
+      <TableRow key={blog.id} onClick={() => addSelectedBlogAndTransition()}>
         <TableCell align="center">{blog.title}</TableCell>
         <TableCell align="center">{blog.createdAt}</TableCell>
         <TableCell align="center">{blog.updatedAt}</TableCell>
