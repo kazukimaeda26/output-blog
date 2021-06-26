@@ -38,17 +38,12 @@ interface paramTypes {
 }
 
 const BlogForm: React.FC = () => {
-  const AWS_ACCESS_KEY = process.env.REACT_APP_AWS_ACCESS_KEY;
-  const AWS_SECRET_KEY = process.env.REACT_APP_AWS_SECRET_KEY;
-  const BUCKET = process.env.REACT_APP_BUCKET;
-
   const selectedBlog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
   const tmpBlog = useSelector(getTmpBlog);
 
   const dispatch: AppDispatch = useDispatch();
   const { handleSubmit, register } = useForm();
-  const { blogId } = useParams<paramTypes>();
 
   const history = useHistory();
 
@@ -104,27 +99,12 @@ const BlogForm: React.FC = () => {
               inputRef={register}
               onChange={(event) => handleTitleChange(event.target.value)}
             />
-            {/* <div className={styles.textWrapper}> */}
             <SimpleMDE
               onChange={(e) => handleTextChange(e)}
               events={{ drop: handleDrop }}
               className={styles.text}
               value={tmpBlog.tmpText}
             />
-            {/* </div> */}
-
-            {/* <TextField
-              id="text"
-              className={styles.text}
-              label="Markdown記法が利用可能です。"
-              multiline
-              rows={20}
-              defaultValue={editState ? blog.text : ""}
-              variant="outlined"
-              name="blogText"
-              inputRef={register}
-              onChange={(event) => handleTextChange(event.target.value)}
-            /> */}
           </div>
           <div className={styles.writtenCharaWrapper}>
             <div className={styles.title} id="titleDOM">
