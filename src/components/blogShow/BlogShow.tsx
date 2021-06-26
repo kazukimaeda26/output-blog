@@ -1,6 +1,7 @@
 import React from "react";
 import marked from "marked";
 import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 import Header from "../header/Header";
 import { getSelectedBlog } from "../../features/blog/blogSlice";
@@ -11,6 +12,11 @@ import styles from "./BlogShow.module.scss";
 
 const BlogShow: React.FC = () => {
   const selectedBlog = useSelector(getSelectedBlog);
+  const { handleSubmit, register } = useForm();
+
+  const handleCreate = async () => {
+    await createComment();
+  };
   return (
     <>
       <Header />
@@ -41,7 +47,10 @@ const BlogShow: React.FC = () => {
           <div className={styles.commentList}>仮コメント３</div>
         </div>
         <p>コメントを投稿する</p>
-        <form action="#" className={styles.commentForm}>
+        <form
+          onSubmit={handleSubmit(handleCreate)}
+          className={styles.commentForm}
+        >
           <div className={styles.commentTextArea}>
             <TextField
               id="outlined-multiline-static"
