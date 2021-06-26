@@ -19,13 +19,10 @@ const Blogs: React.FC = () => {
       <Table className={styles.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right">ID</TableCell>
             <TableCell align="center">タイトル</TableCell>
-            <TableCell align="right">作成日時</TableCell>
-            <TableCell align="right">最終更新日時</TableCell>
-            <TableCell align="right">いいね数</TableCell>
-            <TableCell align="center">編集する</TableCell>
-            <TableCell align="center">削除する</TableCell>
+            <TableCell align="center">作成日時</TableCell>
+            <TableCell align="center">最終更新日時</TableCell>
+            <TableCell align="center">いいね数</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -30,42 +30,13 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleEditBlog = () => {
-    dispatch(selectBlog(blog));
-    dispatch(toggleEditState(true));
-    dispatch(setTmpBlog(""));
-    const path = `/blog/edit/${blog.id}`;
-    history.push(path);
-  };
-
-  const handleDeleteBlog = async (id: string) => {
-    await deleteBlog(id);
-    dispatch(fetchBlogs());
-  };
-
   return (
     <>
-      <TableRow key={blog.id}>
-        <TableCell align="right">{blog.id}</TableCell>
+      <TableRow key={blog.id} onClick={() => history.push(`/blog/${blog.id}`)}>
         <TableCell align="center">{blog.title}</TableCell>
-        <TableCell align="right">{blog.createdAt}</TableCell>
-        <TableCell align="right">{blog.updatedAt}</TableCell>
-        <TableCell align="right">{blog.likes}</TableCell>
-        <TableCell align="center" onClick={handleEditBlog}>
-          <div className={styles.iconWrapper}>
-            <EditIcon className={styles.editIcon} />
-            編集
-          </div>
-        </TableCell>
-        <TableCell align="center">
-          <div
-            className={styles.iconWrapper}
-            onClick={() => handleDeleteBlog(blog.id)}
-          >
-            <DeleteIcon className={styles.deleteIcon} />
-            削除
-          </div>
-        </TableCell>
+        <TableCell align="center">{blog.createdAt}</TableCell>
+        <TableCell align="center">{blog.updatedAt}</TableCell>
+        <TableCell align="center">{blog.likes}</TableCell>
       </TableRow>
     </>
   );
