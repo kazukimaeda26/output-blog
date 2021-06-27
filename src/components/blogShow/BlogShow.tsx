@@ -5,17 +5,25 @@ import { useForm } from "react-hook-form";
 
 import Header from "../header/Header";
 import { getSelectedBlog } from "../../features/blog/blogSlice";
+import { createComment } from "../../features/comment/commentSlice";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import styles from "./BlogShow.module.scss";
 
+type Inputs = {
+  text: string;
+};
+
 const BlogShow: React.FC = () => {
   const selectedBlog = useSelector(getSelectedBlog);
-  const { handleSubmit, register } = useForm();
+  const { handleSubmit, register, reset } = useForm();
 
-  const handleCreate = async () => {
-    await createComment();
+  const blog_id = selectedBlog.id;
+
+  const handleCreate = async (data: Inputs) => {
+    await createComment(blog_id, data.text);
+    reset();
   };
   return (
     <>
@@ -53,6 +61,8 @@ const BlogShow: React.FC = () => {
         >
           <div className={styles.commentTextArea}>
             <TextField
+              name="text"
+              inputRef={register}
               id="outlined-multiline-static"
               label="Multiline"
               multiline
@@ -62,6 +72,7 @@ const BlogShow: React.FC = () => {
             />
           </div>
           <Button
+            type="submit"
             variant="outlined"
             color="primary"
             className={styles.commentButton}
