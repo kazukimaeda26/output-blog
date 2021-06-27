@@ -5,7 +5,10 @@ import { useForm } from "react-hook-form";
 
 import Header from "../header/Header";
 import { getSelectedBlog } from "../../features/blog/blogSlice";
-import { createComment } from "../../features/comment/commentSlice";
+import {
+  createComment,
+  fetchComments,
+} from "../../features/comment/commentSlice";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";

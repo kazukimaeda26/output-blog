@@ -10,6 +10,8 @@ import {
   setTmpBlog,
   fetchBlogs,
 } from "../../features/blog/blogSlice";
+import { fetchComments } from "../../features/comment/commentSlice";
+
 import { useHistory } from "react-router-dom";
 import styles from "./BlogItem.module.scss";
 
@@ -39,6 +41,8 @@ const BlogItem: React.FC<propType> = ({ blog }) => {
         likes: blog.likes,
       })
     );
+    const blog_id = blog.id;
+    dispatch(fetchComments(blog_id));
     history.push(`/blog/${blog.id}`);
   };
 
