@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
 import { auth } from "../../firebase";
-import { getIsAdmin } from "../../features/user/userSlice";
+import { getIsAdmin, toggleIsAdmin } from "../../features/user/userSlice";
 import {
   resetTmpTitleAndText,
   toggleEditState,
@@ -40,6 +40,7 @@ const AdminHeader: React.FC<Inputs> = () => {
   const handleSignOut = async () => {
     try {
       await auth.signOut();
+      dispatch(toggleIsAdmin(false));
       history.push("/");
     } catch (err) {
       alert(err.message);

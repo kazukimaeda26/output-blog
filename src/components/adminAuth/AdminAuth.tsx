@@ -94,7 +94,7 @@ const AdminAuth: React.FC = () => {
     const { email, password } = data;
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      dispatch(toggleIsAdmin(!isAdmin));
+      dispatch(toggleIsAdmin(true));
       history.push("/admin-home");
     } catch (err) {
       alert(err.message);
