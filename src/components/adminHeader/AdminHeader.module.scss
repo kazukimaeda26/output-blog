@@ -1,0 +1,30 @@
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+  background-color: #304ffe;
+  padding: 0.8rem 2.5rem;
+  .titleWrapper {
+    text-decoration: none;
+    cursor: pointer;
+    .title {
+      font-size: 2rem;
+      color: white;
+      font-weight: bold;
+    }
+  }
+  .buttonWrapper {
+    .link {
+      text-decoration: none;
+    }
+    .button {
+      background-color: #ffffff;
+      padding: 0.5rem;
+      margin-left: 1rem;
+      .icon {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

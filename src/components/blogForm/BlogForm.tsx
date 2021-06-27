@@ -51,7 +51,7 @@ const BlogForm: React.FC = () => {
     await createBlog(tmpBlog.tmpTitle, tmpBlog.tmpText);
     dispatch(resetTmpTitleAndText(""));
     dispatch(fetchBlogs());
-    history.push("/");
+    history.push("/admin-home");
   };
   const handleEdit = async (data: Inputs) => {
     const sendData = {
@@ -62,7 +62,7 @@ const BlogForm: React.FC = () => {
     await updateBlog(sendData);
     dispatch(resetTmpTitleAndText(""));
     dispatch(fetchBlogs());
-    history.push("/");
+    history.push("/admin-home");
   };
   const handleTitleChange = (input: string) => {
     dispatch(changeTmpTitle(input));

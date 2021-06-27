@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "../header/Header";
+import AdminHeader from "../adminHeader/AdminHeader";
 import AdminBlogs from "../adminBlogs/AdminBlogs";
 import styles from "./AdminHome.module.scss";
 
 const AdminHome: React.FC = () => {
   return (
     <>
-      <Header />
+      <AdminHeader />
       <div className={styles.blogsWrapper}>
         <AdminBlogs />
       </div>

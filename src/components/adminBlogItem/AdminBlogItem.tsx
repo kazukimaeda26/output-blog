@@ -34,7 +34,7 @@ const AdminBlogItem: React.FC<propType> = ({ blog }) => {
     dispatch(selectBlog(blog));
     dispatch(toggleEditState(true));
     dispatch(setTmpBlog(""));
-    const path = `/blog/edit/${blog.id}`;
+    const path = `admin/blog/edit/${blog.id}`;
     history.push(path);
   };
 

@@ -1,12 +1,12 @@
 import React from "react";
 
 import BlogForm from "../blogForm/BlogForm";
-import Header from "../header/Header";
+import AdminHeader from "../adminHeader/AdminHeader";
 
 const BlogEdit: React.FC = () => {
   return (
     <>
-      <Header />
+      <AdminHeader />
       <BlogForm />
     </>
   );

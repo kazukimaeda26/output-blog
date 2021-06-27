@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import styles from "./Header.module.scss";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
+import LockOpenRoundedIcon from "@material-ui/icons/LockOpenRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { getIsAdmin } from "../../features/user/userSlice";
@@ -29,6 +30,10 @@ const Header: React.FC<Inputs> = () => {
     history.push("/");
   };
 
+  const transitionToAdminSignInPath = () => {
+    history.push("/admin-auth");
+  };
+
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.titleWrapper} onClick={transitionToRootPath}>
@@ -36,7 +41,25 @@ const Header: React.FC<Inputs> = () => {
           {isAdmin ? "Dash Board" : "Output Blog"}
         </div>
       </div>
-      {location.pathname === "/" ? (
+      {isAdmin ? (
+        <Button
+          variant="contained"
+          className={styles.button}
+          onClick={() => console.log("adminである")}
+        >
+          管理者画面へ
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          className={styles.button}
+          onClick={() => transitionToAdminSignInPath()}
+        >
+          <LockOpenRoundedIcon />
+          管理者としてログイン
+        </Button>
+      )}
+      {/* {location.pathname === "/" ? (
         <Button
           variant="contained"
           className={styles.button}
@@ -45,7 +68,7 @@ const Header: React.FC<Inputs> = () => {
           <NoteAddIcon className={styles.icon} />
           記事作成
         </Button>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };

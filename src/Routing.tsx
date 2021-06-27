@@ -13,8 +13,8 @@ const Routing = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/admin-auth" component={AdminAuth} />
         <Route exact path="/admin-home" component={AdminHome} />
-        <Route exact path="/blog/new" component={BlogNew} />
-        <Route path="/blog/edit/:blogId" component={BlogEdit} />
+        <Route exact path="/admin/blog/new" component={BlogNew} />
+        <Route path="/admin/blog/edit/:blogId" component={BlogEdit} />
         <Route path="/blog/:blogId" component={BlogShow} />
       </Switch>
     </BrowserRouter>
