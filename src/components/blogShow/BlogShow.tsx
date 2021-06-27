@@ -7,7 +7,7 @@ import Header from "../header/Header";
 import { getSelectedBlog } from "../../features/blog/blogSlice";
 import {
   createComment,
-  fetchComments,
+  allComments,
 } from "../../features/comment/commentSlice";
 
 import TextField from "@material-ui/core/TextField";
@@ -19,8 +19,10 @@ type Inputs = {
 };
 
 const BlogShow: React.FC = () => {
-  const selectedBlog = useSelector(getSelectedBlog);
   const { handleSubmit, register, reset } = useForm();
+
+  const selectedBlog = useSelector(getSelectedBlog);
+  const comments = useSelector(allComments);
 
   const blog_id = selectedBlog.id;
 
@@ -53,9 +55,9 @@ const BlogShow: React.FC = () => {
       <div className={styles.commentWrapper}>
         <div className={styles.commentLists}>
           <p className={styles.paragraph}>コメント一覧</p>
-          <div className={styles.commentList}>仮コメント１</div>
-          <div className={styles.commentList}>仮コメント２</div>
-          <div className={styles.commentList}>仮コメント３</div>
+          {comments.map((comment) => (
+            <div className={styles.commentList}>{comment.text}</div>
+          ))}
         </div>
         <p>コメントを投稿する</p>
         <form

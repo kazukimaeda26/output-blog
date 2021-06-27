@@ -69,4 +69,7 @@ export const commentSlice = createSlice({
   },
 });
 
+export const allComments = (state: RootState): commentState["comments"] =>
+  state.comment.comments;
+
 export default commentSlice.reducer;
