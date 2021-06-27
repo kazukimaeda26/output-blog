@@ -9,6 +9,26 @@
     border-bottom: 1px solid black;
     margin-top: 0px;
   }
+  .thumbUpAltWrapper {
+    margin-top: 0.5rem;
+    padding: 0.1rem;
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    .button {
+      display: block;
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      .para {
+        margin: 0.5rem 0;
+      }
+    }
+    .num {
+      margin-left: 1rem;
+      font-size: 1.2rem;
+    }
+  }
 }
 
 .commentWrapper {
