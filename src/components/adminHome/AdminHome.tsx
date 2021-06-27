@@ -14,7 +14,7 @@ const AdminHome: React.FC = () => {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      !user && history.push("/admin-auth");
+      if (!user) history.push("/admin-auth");
     });
   }, []);
 
