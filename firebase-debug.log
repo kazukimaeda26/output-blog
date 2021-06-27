@@ -89,3 +89,101 @@
 [info] 
 [info] Project Console: https://console.firebase.google.com/project/output-blog-ee853/overview
 [info] Hosting URL: https://output-blog-ee853.web.app
+[debug] [2021-06-27T02:36:03.835Z] ----------------------------------------------------------------------
+[debug] [2021-06-27T02:36:03.837Z] Command:       /Users/tech-camp/.nodebrew/node/v14.15.3/bin/node /Users/tech-camp/.nodebrew/current/bin/firebase deploy --debug
+[debug] [2021-06-27T02:36:03.838Z] CLI Version:   9.12.1
+[debug] [2021-06-27T02:36:03.838Z] Platform:      darwin
+[debug] [2021-06-27T02:36:03.838Z] Node Version:  v14.15.3
+[debug] [2021-06-27T02:36:03.840Z] Time:          Sun Jun 27 2021 11:36:03 GMT+0900 (日本標準時)
+[debug] [2021-06-27T02:36:03.840Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-27T02:36:03.844Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-06-27T02:36:03.879Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-27T02:36:03.880Z] > authorizing via signed-in user (maedakazuki26@gmail.com)
+[debug] [2021-06-27T02:36:03.880Z] [iam] checking project output-blog-ee853 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-06-27T02:36:03.882Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-06-27T02:36:03.882Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-27T02:36:04.067Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Sun, 27 Jun 2021 02:36:04 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T02:36:04.095Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/output-blog-ee853:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-06-27T02:36:04.464Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-06-27T02:36:04.465Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2021-06-27T02:36:04.788Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 02:36:04 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=566","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T02:36:04.790Z] > refreshing access token with scopes: []
+[debug] [2021-06-27T02:36:04.790Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-27T02:36:04.934Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sun, 27 Jun 2021 02:36:04 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T02:36:04.960Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/output-blog-ee853 [none]
+[debug] [2021-06-27T02:36:05.385Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/output-blog-ee853 200
+[debug] [2021-06-27T02:36:05.386Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/output-blog-ee853 {"projectId":"output-blog-ee853","projectNumber":"680078235383","displayName":"output-blog","name":"projects/output-blog-ee853","resources":{"hostingSite":"output-blog-ee853","storageBucket":"output-blog-ee853.appspot.com","locationId":"asia-northeast1"},"state":"ACTIVE"}
+[info] 
+[info] === Deploying to 'output-blog-ee853'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2021-06-27T02:36:05.391Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-06-27T02:36:05.392Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-27T02:36:05.533Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Sun, 27 Jun 2021 02:36:05 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T02:36:05.554Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/output-blog-ee853/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2021-06-27T02:36:06.812Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 02:36:06 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[output-blog-ee853]: beginning deploy... 
+[info] i  hosting[output-blog-ee853]: found 18 files in build 
+[debug] [2021-06-27T02:36:06.835Z] > refreshing access token with scopes: []
+[debug] [2021-06-27T02:36:06.836Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-27T02:36:06.840Z] [hosting] hash cache [YnVpbGQ] stored for 18 files
+[debug] [2021-06-27T02:36:06.840Z] [hosting][hash queue][FINAL] {"max":1,"min":0,"avg":0,"active":0,"complete":18,"success":18,"errored":0,"retried":0,"total":18,"elapsed":7}
+[debug] [2021-06-27T02:36:06.972Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","date":"Sun, 27 Jun 2021 02:36:06 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T02:36:06.996Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/sites/output-blog-ee853/versions/07c9ac4f52d40213:populateFiles [none]
+[debug] [2021-06-27T02:36:06.997Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/output-blog-ee853/versions/07c9ac4f52d40213:populateFiles {"files":{"/asset-manifest.json":"9431c78d46da9cc30ec70f720dd7f03464747df1b19647b3a41844a6c327f2ed","/favicon.ico":"b72f7455f00e4e58792d2bca892abb068e2213838c0316d6b7a0d6d16acd1955","/index.html":"b93c3fcc28bb50a1f5cdcdcca99fed456c9353bcf23a810efe5f0ba964d6b1b1","/logo192.png":"caff018b7f1e8fd481eb1c50d75b0ef236bcd5078b1d15c8bb348453fee30293","/logo512.png":"191fc21360b4ccfb1cda11a1efb97f489ed22672ca83f4064316802bbfdd750e","/manifest.json":"341d52628782f8ac9290bbfc43298afccb47b7cbfcee146ae30cf0f46bc30900","/robots.txt":"391d14b3c2f8c9143a27a28c7399585142228d4d1bdbe2c87ac946de411fa9a2","/static/css/2.b412cd4e.chunk.css":"fa966f852710a7749dfd15d1ebb14d4761f9f6a153c1d350f11c6d0f3ddf820e","/static/css/2.b412cd4e.chunk.css.map":"a6cf701f41ed3cee19b881823c147fcbf3b3eb5206c51d957f5d733484f4b73c","/static/css/main.8206e0a2.chunk.css":"cfbcba5a99e551e137102250e224bce2945cb187bd0c32ccc0f95a02083208a6","/static/css/main.8206e0a2.chunk.css.map":"7d66de781069a3a41a02ae2757d692fa24b9da8c35b671ca8b6b583825b008fa","/static/js/2.ed9e2695.chunk.js":"2a0df6d2673e6bfd9255f9e94d46441ac8a0add022712ddf8379839247d95a28","/static/js/2.ed9e2695.chunk.js.LICENSE.txt":"811aa181ea54a78299db39149e6ae05673e7e83abcc9d48d12764fe43fa5d667","/static/js/2.ed9e2695.chunk.js.map":"eac78c24f864b256fa601426e910399c104a16995506710743da2744294024d3","/static/js/main.7626bd2a.chunk.js":"2d74aa2d69caa2a0e4bf5e6b7fa64082545717f0822ef78a0f4b7dc4efa5f4c4","/static/js/main.7626bd2a.chunk.js.map":"dcc29e43152070520e2554375be5ae6dc014fc4c378e4df24f1a787950bf63a9","/static/js/runtime-main.2ea9b1dd.js":"437bbcb79f5b11424b69c532a2300184f84a0bbbc7df9c82ad754644c83a0b16","/static/js/runtime-main.2ea9b1dd.js.map":"84cb7ab0401ccf29efaddf85b0eab833d78aed99959327edb508e31ef134699f"}}
+[debug] [2021-06-27T02:36:07.954Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/sites/output-blog-ee853/versions/07c9ac4f52d40213:populateFiles 200
+[debug] [2021-06-27T02:36:07.954Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/sites/output-blog-ee853/versions/07c9ac4f52d40213:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/output-blog-ee853/versions/07c9ac4f52d40213/files"}
+[debug] [2021-06-27T02:36:07.955Z] [hosting][populate queue][FINAL] {"max":1120,"min":1120,"avg":1120,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1120}
+[debug] [2021-06-27T02:36:07.956Z] [hosting] uploads queued: 0
+[debug] [2021-06-27T02:36:07.956Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1624761367956}
+[info] ✔  hosting[output-blog-ee853]: file upload complete 
+[debug] [2021-06-27T02:36:07.957Z] [hosting] deploy completed after 1143ms
+[debug] [2021-06-27T02:36:07.961Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "output-blog-ee853"
+    },
+    "site": "output-blog-ee853",
+    "version": "sites/output-blog-ee853/versions/07c9ac4f52d40213"
+  }
+]
+[info] i  hosting[output-blog-ee853]: finalizing version... 
+[debug] [2021-06-27T02:36:07.962Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-06-27T02:36:07.963Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-27T02:36:08.110Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sun, 27 Jun 2021 02:36:08 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T02:36:08.135Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/output-blog-ee853/versions/07c9ac4f52d40213?updateMask=status  
+ {"status":"FINALIZED"}
+[debug] [2021-06-27T02:36:09.066Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 02:36:08 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T02:36:09.067Z] [hosting] finalized version for output-blog-ee853: {"name":"sites/output-blog-ee853/versions/07c9ac4f52d40213","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2021-06-27T02:36:06.388133Z","createUser":{"email":"maedakazuki26@gmail.com"},"finalizeTime":"2021-06-27T02:36:08.899168Z","finalizeUser":{"email":"maedakazuki26@gmail.com"}}
+[info] ✔  hosting[output-blog-ee853]: version finalized 
+[info] i  hosting[output-blog-ee853]: releasing new version... 
+[debug] [2021-06-27T02:36:09.073Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/output-blog-ee853/releases?version_name=sites/output-blog-ee853/versions/07c9ac4f52d40213  
+ {"message":null}
+[debug] [2021-06-27T02:36:09.987Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 27 Jun 2021 02:36:09 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-27T02:36:09.988Z] [hosting] release: {"name":"sites/output-blog-ee853/releases/1624761369295433","version":{"name":"sites/output-blog-ee853/versions/07c9ac4f52d40213","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2021-06-27T02:36:06.388133Z","createUser":{"email":"maedakazuki26@gmail.com"},"finalizeTime":"2021-06-27T02:36:08.899168Z","finalizeUser":{"email":"maedakazuki26@gmail.com"}},"type":"DEPLOY","releaseTime":"2021-06-27T02:36:09.295433356Z","releaseUser":{"email":"maedakazuki26@gmail.com"}}
+[info] ✔  hosting[output-blog-ee853]: release complete 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/output-blog-ee853/overview
+[info] Hosting URL: https://output-blog-ee853.web.app
