@@ -1,26 +1,36 @@
 import React from "react";
 import marked from "marked";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
 import Header from "../header/Header";
-import { getSelectedBlog } from "../../features/blog/blogSlice";
+import {
+  getSelectedBlog,
+  countUpLikes,
+  updateLikesNum,
+} from "../../features/blog/blogSlice";
 import {
   createComment,
   allComments,
 } from "../../features/comment/commentSlice";
+import styles from "./BlogShow.module.scss";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import styles from "./BlogShow.module.scss";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 
 type Inputs = {
   text: string;
 };
 
+type InputsNum = {
+  id: string;
+  likes: number;
+};
+
 const BlogShow: React.FC = () => {
   const { handleSubmit, register, reset } = useForm();
-
+  const dispatch = useDispatch();
   const selectedBlog = useSelector(getSelectedBlog);
   const comments = useSelector(allComments);
 
@@ -30,6 +40,12 @@ const BlogShow: React.FC = () => {
     await createComment(blog_id, data.text);
     reset();
   };
+
+  const handleCountUp = async (id: string, likes: number) => {
+    await updateLikesNum(selectedBlog.id, selectedBlog.likes + 1);
+    dispatch(countUpLikes(""));
+  };
+
   return (
     <>
       <Header />
@@ -50,6 +66,16 @@ const BlogShow: React.FC = () => {
           <span
             dangerouslySetInnerHTML={{ __html: marked(selectedBlog.text) }}
           />
+        </div>
+        <div className={styles.thumbUpAltWrapper}>
+          <button
+            className={styles.button}
+            onClick={() => handleCountUp(selectedBlog.id, selectedBlog.likes)}
+          >
+            <p className={styles.para}>イイネ！</p>
+            <ThumbUpAltIcon className={styles.thumbUpAltIcon} />
+          </button>
+          <p className={styles.num}>{selectedBlog.likes}</p>
         </div>
       </div>
       <div className={styles.commentWrapper}>

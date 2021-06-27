@@ -118,6 +118,23 @@ export const deleteBlog = async (id: string): Promise<void> => {
   }
 };
 
+// likesのカウントを+1
+export const updateLikesNum = async (
+  blog_id: string,
+  likes: number
+): Promise<void> => {
+  try {
+    await db.collection("blogs").doc(blog_id).set(
+      {
+        likes: likes,
+      },
+      { merge: true }
+    );
+  } catch (err) {
+    console.log("Error updating document:", err);
+  }
+};
+
 export const blogSlice = createSlice({
   name: "blog",
   initialState,
@@ -142,6 +159,9 @@ export const blogSlice = createSlice({
       state.tmpBlog.tmpTitle = state.selectedBlog.title;
       state.tmpBlog.tmpText = state.selectedBlog.text;
     },
+    countUpLikes: (state, action) => {
+      state.selectedBlog.likes = state.selectedBlog.likes + 1;
+    },
   },
 
   extraReducers: (builder) => {
@@ -158,6 +178,7 @@ export const {
   changeTmpText,
   resetTmpTitleAndText,
   setTmpBlog,
+  countUpLikes,
 } = blogSlice.actions;
 
 export const allBlogs = (state: RootState): blogState["blogs"] =>
