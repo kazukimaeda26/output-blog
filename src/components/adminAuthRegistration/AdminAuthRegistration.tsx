@@ -163,9 +163,14 @@ const AdminAuthRegistration: React.FC = () => {
               登録
             </Button>
             <Grid container>
-              <Grid item>
+              <Grid item xs>
                 <Link href="/admin-auth" variant="body2">
-                  ログイン画面はこちら
+                  ログイン画面へ
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="/" variant="body2">
+                  トップページへ
                 </Link>
               </Grid>
             </Grid>
