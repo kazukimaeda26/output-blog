@@ -8,8 +8,11 @@
     display: flex;
     width: 100vw;
     background-color: $ashGray;
+    & > div {
+      height: auto;
+    }
     .inputWrapper {
-      height: 10vh;
+      min-height: 73vh;
       width: 50vw;
       margin-top: 0.5rem;
       margin-left: 0.5rem;
@@ -19,14 +22,14 @@
         background-color: white;
       }
       .simpleMDEWrapper {
-        height: 73vh;
+        min-height: 73vh;
         & > div {
           min-height: 73vh;
           & > div {
             min-height: 73vh;
-          }
-          & > .CodeMirror {
-            min-height: 70vh;
+            & > div:nth-child(2) {
+              min-height: 63vh;
+            }
           }
         }
 
@@ -38,7 +41,7 @@
       }
     }
     .writtenCharaWrapper {
-      height: 84vh;
+      min-height: 84vh;
       width: 50vw;
       margin-top: 0.5rem;
       margin-right: 0.5rem;
@@ -54,14 +57,14 @@
         background-color: white;
       }
       .text {
-        height: 67vh;
+        min-height: 67vh;
         margin-top: 0.5rem;
         border: 1px solid gray;
         border-radius: 0.3rem;
         min-height: 65vh;
         padding-top: 1rem;
         padding-left: 0.5rem;
-        padding-bottom: 1.8rem;
+        padding-bottom: 2.8rem;
         background-color: white;
       }
     }
