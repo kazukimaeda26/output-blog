@@ -76,20 +76,9 @@ interface AuthDataTypes {
 const AdminAuth: React.FC = () => {
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm<AuthDataTypes>();
-  const isAdmin = useSelector(getIsAdmin);
-  const isSignIn = useSelector(getIsSignIn);
   const history = useHistory();
   const dispatch: AppDispatch = useDispatch();
 
-  const handleSignUp = async (data: AuthDataTypes) => {
-    const { email, password } = data;
-    try {
-      await auth.createUserWithEmailAndPassword(email, password);
-      history.push("/");
-    } catch (err) {
-      alert(err.message);
-    }
-  };
   const handleSignIn = async (data: AuthDataTypes) => {
     const { email, password } = data;
     try {
@@ -100,6 +89,7 @@ const AdminAuth: React.FC = () => {
       alert(err.message);
     }
   };
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -110,14 +100,12 @@ const AdminAuth: React.FC = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            {isSignIn ? "ログイン" : "新規登録"}
+            管理者としてログイン
           </Typography>
           <form
             className={classes.form}
             noValidate
-            onSubmit={
-              isSignIn ? handleSubmit(handleSignIn) : handleSubmit(handleSignUp)
-            }
+            onSubmit={handleSubmit(handleSignIn)}
           >
             <TextField
               variant="outlined"
@@ -178,23 +166,15 @@ const AdminAuth: React.FC = () => {
               color="primary"
               className={classes.submit}
             >
-              {isAdmin ? "すでにサインインしてます" : "Sign In"}
+              ログイン
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  aaaaa
-                </Link>
+                <Link href="#" variant="body2"></Link>
               </Grid>
               <Grid item>
-                <Link
-                  href="#"
-                  variant="body2"
-                  onClick={() => dispatch(toggleIsSignIn(!isSignIn))}
-                >
-                  {isSignIn
-                    ? "アカウントをお持ちでない方はこちら"
-                    : "アカウントをお持ちの方はこちら"}
+                <Link variant="body2" onClick={() => history.push("/")}>
+                  トップページへ
                 </Link>
               </Grid>
             </Grid>

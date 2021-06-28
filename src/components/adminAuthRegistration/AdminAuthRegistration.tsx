@@ -164,12 +164,15 @@ const AdminAuthRegistration: React.FC = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="/admin-auth" variant="body2">
+                <Link
+                  onClick={() => history.push("/admin-auth")}
+                  variant="body2"
+                >
                   ログイン画面へ
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/" variant="body2">
+                <Link onClick={() => history.push("/")} variant="body2">
                   トップページへ
                 </Link>
               </Grid>
