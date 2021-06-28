@@ -6,12 +6,18 @@ import AdminHome from "./components/adminHome/AdminHome";
 import BlogNew from "./components/blogNew/BlogNew";
 import BlogEdit from "./components/blogEdit/BlogEdit";
 import BlogShow from "./components/blogShow/BlogShow";
+import AdminAuthRegistration from "./components/adminAuthRegistration/AdminAuthRegistration";
 const Routing = () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/admin-auth" component={AdminAuth} />
+        <Route
+          exact
+          path="/admin-auth/registration"
+          component={AdminAuthRegistration}
+        />
         <Route exact path="/admin-home" component={AdminHome} />
         <Route exact path="/admin/blog/new" component={BlogNew} />
         <Route path="/admin/blog/edit/:blogId" component={BlogEdit} />
