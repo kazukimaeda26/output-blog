@@ -1,28 +1,49 @@
+@import "../../color.scss";
 .form {
-  background-color: #e0f7fa;
+  background-color: white;
+  min-height: 92vh;
   width: 100%;
   .blogWrapper {
+    min-height: 84vh;
     display: flex;
     width: 100vw;
+    background-color: $ashGray;
     .inputWrapper {
+      height: 10vh;
       width: 50vw;
       margin-top: 0.5rem;
       margin-left: 0.5rem;
       .title {
         width: 97%;
         margin: 0.5rem 0;
+        background-color: white;
       }
-      .text {
-        width: 97%;
-        margin: 0.5rem 0;
+      .simpleMDEWrapper {
+        height: 73vh;
+        & > div {
+          min-height: 73vh;
+          & > div {
+            min-height: 73vh;
+          }
+          & > .CodeMirror {
+            min-height: 70vh;
+          }
+        }
+
+        .text {
+          background-color: white;
+          width: 97%;
+          margin: 0.5rem 0;
+        }
       }
     }
     .writtenCharaWrapper {
+      height: 84vh;
       width: 50vw;
       margin-top: 0.5rem;
       margin-right: 0.5rem;
       .title {
-        height: 3.4rem;
+        height: 7vh;
         display: flex;
         align-items: center;
         margin-top: 0.5rem;
@@ -30,28 +51,34 @@
         border: 1px solid gray;
         border-radius: 0.3rem;
         padding-left: 0.5rem;
+        background-color: white;
       }
       .text {
+        height: 67vh;
         margin-top: 0.5rem;
         border: 1px solid gray;
         border-radius: 0.3rem;
-        height: 24.2rem;
+        min-height: 65vh;
         padding-top: 1rem;
         padding-left: 0.5rem;
+        padding-bottom: 1.8rem;
+        background-color: white;
       }
     }
   }
   .buttonWrapper {
     width: 100%;
-    margin: 0.5rem 0;
+    background-color: $ashGray;
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 8vh;
     .button {
+      display: block;
       color: white;
       font-weight: bold;
-      background-color: #304ffe;
-      width: 50vw;
-      margin-bottom: 0.5rem;
+      background-color: $indigoDye;
+      width: 25vw;
     }
   }
 }

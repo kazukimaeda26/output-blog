@@ -99,12 +99,14 @@ const BlogForm: React.FC = () => {
               inputRef={register}
               onChange={(event) => handleTitleChange(event.target.value)}
             />
-            <SimpleMDE
-              onChange={(e) => handleTextChange(e)}
-              events={{ drop: handleDrop }}
-              className={styles.text}
-              value={tmpBlog.tmpText}
-            />
+            <div className={styles.simpleMDEWrapper}>
+              <SimpleMDE
+                onChange={(e) => handleTextChange(e)}
+                events={{ drop: handleDrop }}
+                className={styles.text}
+                value={tmpBlog.tmpText}
+              />
+            </div>
           </div>
           <div className={styles.writtenCharaWrapper}>
             <div className={styles.title} id="titleDOM">

@@ -1,8 +1,9 @@
+@import "./color.scss";
 .root {
   box-sizing: border-box;
   min-height: 100vh;
   width: 100vw;
-  background-color: #e0f7fa;
+  background-color: $ashGray;
   .App_root__2CSG3 {
     width: 100%;
   }

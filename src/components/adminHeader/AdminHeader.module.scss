@@ -1,9 +1,11 @@
+@import "../../color.scss";
 .headerWrapper {
+  height: $headerHeight;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #304ffe;
-  padding: 0.8rem 2.5rem;
+  background-color: $indigoDye;
+  padding: 0 2.5rem;
   .titleWrapper {
     text-decoration: none;
     cursor: pointer;
@@ -18,7 +20,7 @@
       text-decoration: none;
     }
     .button {
-      background-color: #ffffff;
+      background-color: white;
       padding: 0.5rem;
       margin-left: 1rem;
       .icon {
