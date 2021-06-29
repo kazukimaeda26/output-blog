@@ -87,11 +87,11 @@ const BlogForm: React.FC = () => {
         }
         className={styles.form}
       >
-        <div className={styles.blogWrapper}>
-          <div className={styles.inputWrapper}>
+        <div className={styles.titleWrapper}>
+          <div className={styles.leftTitleWrapper}>
             <TextField
               id="title"
-              className={styles.title}
+              className={styles.leftTitle}
               label="タイトル"
               variant="outlined"
               defaultValue={editState ? selectedBlog.title : ""}
@@ -99,28 +99,29 @@ const BlogForm: React.FC = () => {
               inputRef={register}
               onChange={(event) => handleTitleChange(event.target.value)}
             />
-            <div className={styles.simpleMDEWrapper}>
-              <SimpleMDE
-                onChange={(e) => handleTextChange(e)}
-                events={{ drop: handleDrop }}
-                className={styles.text}
-                value={tmpBlog.tmpText}
-              />
-            </div>
           </div>
-          <div className={styles.writtenCharaWrapper}>
-            <div className={styles.title} id="titleDOM">
-              <span
-                dangerouslySetInnerHTML={{ __html: marked(tmpBlog.tmpTitle) }}
-              />
-            </div>
-            <div className={styles.text}>
-              <span
-                dangerouslySetInnerHTML={{ __html: marked(tmpBlog.tmpText) }}
-              />
-            </div>
+          <div className={styles.rightTitleWrapper}></div>
+          <span
+            dangerouslySetInnerHTML={{ __html: marked(tmpBlog.tmpTitle) }}
+          />
+        </div>
+
+        <div className={styles.textWrapper}>
+          <div className={styles.leftTextWrapper}>
+            <SimpleMDE
+              onChange={(e) => handleTextChange(e)}
+              events={{ drop: handleDrop }}
+              className={styles.text}
+              value={tmpBlog.tmpText}
+            />
+          </div>
+          <div className={styles.rightTextWrapper}>
+            <span
+              dangerouslySetInnerHTML={{ __html: marked(tmpBlog.tmpText) }}
+            />
           </div>
         </div>
+
         <div className={styles.buttonWrapper}>
           {editState ? (
             <Button type="submit" className={styles.button}>
