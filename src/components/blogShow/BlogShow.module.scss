@@ -1,14 +1,16 @@
 @import "../../color.scss";
 .wrapper {
   margin: 2.5rem;
-  padding: 2rem 2rem 2rem 2rem;
+  padding: 2rem;
   background-color: white;
   border-radius: 0.3rem;
-  height: auto;
 
   .titleWrapper {
     border-bottom: 1px solid black;
     margin-top: 0px;
+    p {
+      margin-top: 0rem;
+    }
   }
   .buttonWrapper {
     display: flex;
@@ -71,59 +73,63 @@
     }
   }
 }
-
 .commentWrapper {
-  background-color: white;
+  background-color: $ashGray;
   border-radius: 0.3rem;
-  margin: 2.5rem 2.5rem 2rem 2.5rem;
-  padding: 1rem 2.5rem;
-  .commentLists {
-    .paragraph {
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-    .commentList {
-      padding: 1.5rem;
-      border-bottom: 1px lightgrey dashed;
-      .user {
+  margin: 2.5rem 2.5rem 2.5rem 2.5rem;
+  .commentListsAndPostCommentWrapper {
+    border-radius: 0.3rem;
+    padding: 2rem;
+    .commentLists {
+      .paragraph {
+        margin-top: 0rem;
         font-weight: bold;
-        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
       }
-      .date {
-        color: gray;
-        font-size: 0.8rem;
-        margin-bottom: 0.5rem;
-      }
-      .text {
-        padding-left: 1.5rem;
-      }
-    }
-  }
-  .postComment {
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-  .commentForm {
-    .nickname {
-      width: 100%;
-      display: flex;
-      margin-bottom: 1rem;
-      div {
-        width: 100%;
-      }
-    }
-    .comment {
-      display: flex;
-      width: 100%;
-      div {
-        width: 100%;
-        textarea {
-          width: 100%;
+      .commentList {
+        padding: 1.5rem;
+        border-bottom: 1px lightgrey dashed;
+        .user {
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+        .date {
+          color: gray;
+          font-size: 0.8rem;
+          margin-bottom: 0.5rem;
+        }
+        .text {
+          padding-left: 1.5rem;
         }
       }
     }
-    .button {
-      margin: 1rem 0;
+    background-color: white;
+    .postComment {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    .commentForm {
+      .nickname {
+        width: 100%;
+        display: flex;
+        margin-bottom: 1rem;
+        div {
+          width: 100%;
+        }
+      }
+      .comment {
+        display: flex;
+        width: 100%;
+        div {
+          width: 100%;
+          textarea {
+            width: 100%;
+          }
+        }
+      }
+      .button {
+        margin: 1rem 0;
+      }
     }
   }
 }

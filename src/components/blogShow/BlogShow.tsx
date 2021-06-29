@@ -99,60 +99,61 @@ const BlogShow: React.FC = () => {
         </div>
       </div>
       <div className={styles.commentWrapper}>
-        <div className={styles.commentLists}>
-          <p className={styles.paragraph}>コメント</p>
-          {comments.map((comment) => (
-            <>
-              <div className={styles.commentList}>
-                <div>
-                  <span className={styles.user}>
-                    {comment.nickname === "" ? "匿名さん" : comment.nickname}
-                  </span>{" "}
-                  さんより：
+        <div className={styles.commentListsAndPostCommentWrapper}>
+          <div className={styles.commentLists}>
+            <p className={styles.paragraph}>コメント</p>
+            {comments.map((comment) => (
+              <>
+                <div className={styles.commentList}>
+                  <div>
+                    <span className={styles.user}>
+                      {comment.nickname === "" ? "匿名さん" : comment.nickname}
+                    </span>{" "}
+                    さんより：
+                  </div>
+                  <div className={styles.date}>{comment.createdAt}</div>
+                  <div className={styles.text}>{comment.text}</div>
                 </div>
-                <div className={styles.date}>{comment.createdAt}</div>
-                <div className={styles.text}>{comment.text}</div>
-              </div>
-            </>
-          ))}
-        </div>
-        <p className={styles.postComment}>コメントを投稿する</p>
-        <form
-          onSubmit={handleSubmit(handleCreate)}
-          className={styles.commentForm}
-        >
-          <div className={styles.nickname}>
-            <TextField
-              name="nickname"
-              inputRef={register}
-              id="outlined-basic"
-              label="ニックネーム（匿名でもコメント可能です）"
-              variant="outlined"
-            />
+              </>
+            ))}
           </div>
-          <div className={styles.comment}>
-            <TextField
-              name="text"
-              inputRef={register}
-              id="outlined-multiline-static"
-              label="コメントをどうぞ"
-              multiline
-              rows={4}
-              defaultValue=""
-              variant="outlined"
-            />
-          </div>
-          <Button
-            type="submit"
-            variant="outlined"
-            color="primary"
-            className={styles.button}
+          <p className={styles.postComment}>コメントを投稿する</p>
+          <form
+            onSubmit={handleSubmit(handleCreate)}
+            className={styles.commentForm}
           >
-            投稿する
-          </Button>
-        </form>
+            <div className={styles.nickname}>
+              <TextField
+                name="nickname"
+                inputRef={register}
+                id="outlined-basic"
+                label="ニックネーム（匿名でもコメント可能です）"
+                variant="outlined"
+              />
+            </div>
+            <div className={styles.comment}>
+              <TextField
+                name="text"
+                inputRef={register}
+                id="outlined-multiline-static"
+                label="コメントをどうぞ"
+                multiline
+                rows={4}
+                defaultValue=""
+                variant="outlined"
+              />
+            </div>
+            <Button
+              type="submit"
+              variant="outlined"
+              color="primary"
+              className={styles.button}
+            >
+              投稿する
+            </Button>
+          </form>
+        </div>
       </div>
-      <div className="bottom"></div>
     </>
   );
 };
