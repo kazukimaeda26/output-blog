@@ -84,10 +84,18 @@ const BlogShow: React.FC = () => {
         <div className={styles.commentLists}>
           <p className={styles.paragraph}>コメント</p>
           {comments.map((comment) => (
-            <div className={styles.commentList}>{comment.text}</div>
+            <>
+              <div className={styles.commentList}>
+                <div>
+                  <span className={styles.user}>たこさん</span> より：
+                </div>
+                <div className={styles.date}>2021/07/02 21:45</div>
+                <div className={styles.text}>{comment.text}</div>
+              </div>
+            </>
           ))}
         </div>
-        <p>コメントを投稿する</p>
+        <p className={styles.postComment}>コメントを投稿する</p>
         <form
           onSubmit={handleSubmit(handleCreate)}
           className={styles.commentForm}
