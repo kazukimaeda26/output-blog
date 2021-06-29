@@ -63,7 +63,15 @@
     font-size: 1.5rem;
   }
   .commentForm {
-    .commentTextArea {
+    .nickname {
+      width: 100%;
+      display: flex;
+      margin-bottom: 1rem;
+      div {
+        width: 100%;
+      }
+    }
+    .comment {
       display: flex;
       width: 100%;
       div {
@@ -73,8 +81,8 @@
         }
       }
     }
-    .commentButton {
-      margin: 1rem;
+    .button {
+      margin: 1rem 0;
     }
   }
 }

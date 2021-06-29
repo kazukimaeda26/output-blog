@@ -22,11 +22,7 @@ import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 
 type Inputs = {
   text: string;
-};
-
-type InputsNum = {
-  id: string;
-  likes: number;
+  nickname: string;
 };
 
 const BlogShow: React.FC = () => {
@@ -38,7 +34,7 @@ const BlogShow: React.FC = () => {
   const blog_id = selectedBlog.id;
 
   const handleCreate = async (data: Inputs) => {
-    await createComment(blog_id, data.text);
+    await createComment(blog_id, data.text, data.nickname);
     dispatch(fetchComments(blog_id));
     reset();
   };
@@ -87,7 +83,9 @@ const BlogShow: React.FC = () => {
             <>
               <div className={styles.commentList}>
                 <div>
-                  <span className={styles.user}>{comment.nickname}</span>{" "}
+                  <span className={styles.user}>
+                    {comment.nickname === "" ? "匿名さん" : comment.nickname}
+                  </span>{" "}
                   さんより：
                 </div>
                 <div className={styles.date}>{comment.createdAt}</div>
@@ -101,12 +99,21 @@ const BlogShow: React.FC = () => {
           onSubmit={handleSubmit(handleCreate)}
           className={styles.commentForm}
         >
-          <div className={styles.commentTextArea}>
+          <div className={styles.nickname}>
+            <TextField
+              name="nickname"
+              inputRef={register}
+              id="outlined-basic"
+              label="ニックネーム（匿名でもコメント可能です）"
+              variant="outlined"
+            />
+          </div>
+          <div className={styles.comment}>
             <TextField
               name="text"
               inputRef={register}
               id="outlined-multiline-static"
-              label="Multiline"
+              label="コメントをどうぞ"
               multiline
               rows={4}
               defaultValue=""
@@ -117,7 +124,7 @@ const BlogShow: React.FC = () => {
             type="submit"
             variant="outlined"
             color="primary"
-            className={styles.commentButton}
+            className={styles.button}
           >
             投稿する
           </Button>

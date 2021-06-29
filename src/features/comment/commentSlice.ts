@@ -45,13 +45,15 @@ export const fetchComments = createAsyncThunk(
 // commentの新規作成
 export const createComment = async (
   blog_id: string,
-  text: string
+  text: string,
+  nickname: string
 ): Promise<void> => {
   try {
     const now = new Date();
     const dateTime = firebase.firestore.Timestamp.fromDate(now);
     await db.collection("blogs").doc(blog_id).collection("comments").add({
       text: text,
+      nickname: nickname,
       createdAt: now.toLocaleString(),
       dateTime: dateTime,
     });
