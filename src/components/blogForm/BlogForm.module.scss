@@ -4,7 +4,7 @@
   min-height: 92vh;
   width: 100%;
   .blogWrapper {
-    min-height: 84vh;
+    min-height: 82vh;
     display: flex;
     width: 100vw;
     background-color: $ashGray;
@@ -22,13 +22,13 @@
         background-color: white;
       }
       .simpleMDEWrapper {
-        min-height: 73vh;
+        min-height: 72vh;
         & > div {
-          min-height: 73vh;
+          min-height: 72vh;
           & > div {
-            min-height: 73vh;
+            min-height: 72vh;
             & > div:nth-child(2) {
-              min-height: 63vh;
+              min-height: 62vh;
             }
           }
         }
@@ -41,7 +41,7 @@
       }
     }
     .writtenCharaWrapper {
-      min-height: 84vh;
+      min-height: 78vh;
       width: 50vw;
       margin-top: 0.5rem;
       margin-right: 0.5rem;
@@ -57,7 +57,7 @@
         background-color: white;
       }
       .text {
-        min-height: 67vh;
+        min-height: 65vh;
         margin-top: 0.5rem;
         border: 1px solid gray;
         border-radius: 0.3rem;
