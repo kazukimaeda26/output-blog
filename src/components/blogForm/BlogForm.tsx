@@ -100,10 +100,11 @@ const BlogForm: React.FC = () => {
               onChange={(event) => handleTitleChange(event.target.value)}
             />
           </div>
-          <div className={styles.rightTitleWrapper}></div>
-          <span
-            dangerouslySetInnerHTML={{ __html: marked(tmpBlog.tmpTitle) }}
-          />
+          <div className={styles.rightTitleWrapper}>
+            <span
+              dangerouslySetInnerHTML={{ __html: marked(tmpBlog.tmpTitle) }}
+            />
+          </div>
         </div>
 
         <div className={styles.textWrapper}>
