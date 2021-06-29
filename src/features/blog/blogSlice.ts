@@ -118,7 +118,7 @@ export const deleteBlog = async (id: string): Promise<void> => {
   }
 };
 
-// likesのカウントを+1
+// likesのカウントを更新する
 export const updateLikesNum = async (
   blog_id: string,
   likes: number
