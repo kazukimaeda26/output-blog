@@ -7,6 +7,7 @@ export interface commentState {
   idCount: number;
   comments: {
     id: string;
+    nickname: string;
     text: string;
     createdAt: string;
   }[];
@@ -30,6 +31,7 @@ export const fetchComments = createAsyncThunk(
 
     const allComments = res.docs.map((doc) => ({
       id: doc.id,
+      nickname: doc.data().nickname,
       text: doc.data().text,
       createdAt: doc.data().createdAt,
     }));

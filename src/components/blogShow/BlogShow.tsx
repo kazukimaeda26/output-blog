@@ -87,9 +87,10 @@ const BlogShow: React.FC = () => {
             <>
               <div className={styles.commentList}>
                 <div>
-                  <span className={styles.user}>たこさん</span> より：
+                  <span className={styles.user}>{comment.nickname}</span>{" "}
+                  さんより：
                 </div>
-                <div className={styles.date}>2021/07/02 21:45</div>
+                <div className={styles.date}>{comment.createdAt}</div>
                 <div className={styles.text}>{comment.text}</div>
               </div>
             </>
