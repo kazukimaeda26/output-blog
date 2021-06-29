@@ -11,6 +11,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 
 import { selectBlog } from "../../features/blog/blogSlice";
 import { fetchComments } from "../../features/comment/commentSlice";
+import styles from "./BlogCard.module.scss";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,8 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
       maxWidth: 500,
     },
     image: {
-      width: 140,
-      height: 140,
+      width: 200,
+      height: 200,
     },
     img: {
       margin: "auto",
@@ -51,7 +52,7 @@ const BlogCard: React.FC<propType> = ({ blog }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   let text = blog.text;
-  if (text.length > 40) text = text.substr(0, 37) + "...";
+  if (text.length > 60) text = text.substr(0, 57) + "...";
 
   const addSelectedBlogAndTransition = () => {
     dispatch(
@@ -70,48 +71,31 @@ const BlogCard: React.FC<propType> = ({ blog }) => {
   };
 
   return (
-    <div
-      className={classes.root}
-      onClick={() => addSelectedBlogAndTransition()}
-    >
-      <Paper className={classes.paper}>
-        <Grid container spacing={2}>
-          <Grid item>
-            <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src={noImage} />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
-                  {blog.title}
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  {text}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  {blog.updatedAt !== ""
-                    ? `作成日：${blog.updatedAt}`
-                    : `最終更新日：${blog.createdAt}`}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2" style={{ cursor: "pointer" }}>
-                  {`コメント数：仮10000件`}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Typography variant="subtitle1">
-                <FavoriteIcon />
-                {blog.likes}
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Paper>
-    </div>
+    <>
+      <div
+        className={styles.blogCardWrapper}
+        onClick={() => addSelectedBlogAndTransition()}
+      >
+        <div className={styles.imageWrapper}>
+          <img className={styles.image} alt="complex" src={noImage} />
+        </div>
+        <div className={styles.rightWrapper}>
+          <div className={styles.titleAndLikesWrapper}>
+            <div className={styles.title}>{blog.title}</div>
+            <div className={styles.likes}>
+              <FavoriteIcon className={styles.favoriteIcon} />
+              {blog.likes}
+            </div>
+          </div>
+          <div className={styles.paragraph}>{text}</div>
+          <div className={styles.date}>
+            {blog.updatedAt !== ""
+              ? `作成日：${blog.updatedAt}`
+              : `更新日：${blog.createdAt}`}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
