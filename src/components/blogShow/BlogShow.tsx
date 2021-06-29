@@ -12,6 +12,7 @@ import {
 import {
   createComment,
   allComments,
+  fetchComments,
 } from "../../features/comment/commentSlice";
 import styles from "./BlogShow.module.scss";
 
@@ -38,6 +39,7 @@ const BlogShow: React.FC = () => {
 
   const handleCreate = async (data: Inputs) => {
     await createComment(blog_id, data.text);
+    dispatch(fetchComments(blog_id));
     reset();
   };
 
@@ -80,7 +82,7 @@ const BlogShow: React.FC = () => {
       </div>
       <div className={styles.commentWrapper}>
         <div className={styles.commentLists}>
-          <p className={styles.paragraph}>コメント一覧</p>
+          <p className={styles.paragraph}>コメント</p>
           {comments.map((comment) => (
             <div className={styles.commentList}>{comment.text}</div>
           ))}
