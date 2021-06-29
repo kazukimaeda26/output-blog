@@ -7,6 +7,7 @@ import Header from "../header/Header";
 import {
   getSelectedBlog,
   countUpLikes,
+  countDownLikes,
   updateLikesNum,
 } from "../../features/blog/blogSlice";
 import {
@@ -19,6 +20,8 @@ import styles from "./BlogShow.module.scss";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import ThumbDownAltIcon from "@material-ui/icons/ThumbDownAlt";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 type Inputs = {
   text: string;
@@ -43,7 +46,10 @@ const BlogShow: React.FC = () => {
     await updateLikesNum(selectedBlog.id, selectedBlog.likes + 1);
     dispatch(countUpLikes(""));
   };
-
+  const handleCountDown = async (id: string, likes: number) => {
+    await updateLikesNum(selectedBlog.id, selectedBlog.likes - 1);
+    dispatch(countDownLikes(""));
+  };
   return (
     <>
       <Header />
@@ -65,15 +71,31 @@ const BlogShow: React.FC = () => {
             dangerouslySetInnerHTML={{ __html: marked(selectedBlog.text) }}
           />
         </div>
-        <div className={styles.thumbUpAltWrapper}>
-          <button
-            className={styles.button}
-            onClick={() => handleCountUp(selectedBlog.id, selectedBlog.likes)}
-          >
-            <p className={styles.para}>イイネ！</p>
-            <ThumbUpAltIcon className={styles.thumbUpAltIcon} />
-          </button>
-          <p className={styles.num}>{selectedBlog.likes}</p>
+        <div className={styles.buttonWrapper}>
+          <div className={styles.thumbUpAltWrapper}>
+            <button
+              className={styles.button}
+              onClick={() => handleCountUp(selectedBlog.id, selectedBlog.likes)}
+            >
+              <p className={styles.para}>イイネ！</p>
+              <ThumbUpAltIcon className={styles.thumbUpAltIcon} />
+            </button>
+          </div>
+          <div className={styles.thumbDownAltWrapper}>
+            <button
+              className={styles.button}
+              onClick={() =>
+                handleCountDown(selectedBlog.id, selectedBlog.likes)
+              }
+            >
+              <p className={styles.para}>ヨクナイネ！</p>
+              <ThumbDownAltIcon className={styles.thumbDownAltIcon} />
+            </button>
+            <p className={styles.num}>
+              <FavoriteIcon className={styles.favoriteIcon} />
+              {selectedBlog.likes}
+            </p>
+          </div>
         </div>
       </div>
       <div className={styles.commentWrapper}>

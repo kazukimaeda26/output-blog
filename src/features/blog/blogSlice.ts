@@ -162,6 +162,9 @@ export const blogSlice = createSlice({
     countUpLikes: (state, action) => {
       state.selectedBlog.likes = state.selectedBlog.likes + 1;
     },
+    countDownLikes: (state, action) => {
+      state.selectedBlog.likes = state.selectedBlog.likes - 1;
+    },
   },
 
   extraReducers: (builder) => {
@@ -179,6 +182,7 @@ export const {
   resetTmpTitleAndText,
   setTmpBlog,
   countUpLikes,
+  countDownLikes,
 } = blogSlice.actions;
 
 export const allBlogs = (state: RootState): blogState["blogs"] =>
