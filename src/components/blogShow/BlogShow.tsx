@@ -152,6 +152,7 @@ const BlogShow: React.FC = () => {
           </Button>
         </form>
       </div>
+      <div className="bottom"></div>
     </>
   );
 };
