@@ -25,6 +25,20 @@ const BlogCard: React.FC<propType> = ({ blog }) => {
   let text = blog.text;
   if (text.length > 60) text = text.substr(0, 57) + "...";
 
+  let eyeCatchURL = "";
+  const startingPositionOfImageURL = blog.text.indexOf("![]", 0);
+  if (startingPositionOfImageURL === -1) {
+    eyeCatchURL = noImage;
+  } else {
+    let endPositionOfImgeURL = blog.text.indexOf(
+      ")",
+      startingPositionOfImageURL
+    );
+    eyeCatchURL = blog.text.substr(
+      startingPositionOfImageURL + 4,
+      endPositionOfImgeURL - (startingPositionOfImageURL + 4)
+    );
+  }
   const addSelectedBlogAndTransition = () => {
     dispatch(
       selectBlog({
@@ -48,7 +62,7 @@ const BlogCard: React.FC<propType> = ({ blog }) => {
         onClick={() => addSelectedBlogAndTransition()}
       >
         <div className={styles.imageWrapper}>
-          <img className={styles.image} alt="complex" src={noImage} />
+          <img className={styles.image} alt="complex" src={eyeCatchURL} />
         </div>
         <div className={styles.rightWrapper}>
           <div className={styles.titleAndLikesWrapper}>
