@@ -12,6 +12,14 @@
       margin-top: 0rem;
     }
   }
+  .text {
+    img {
+      width: 95%;
+      border-radius: 0.3rem;
+      display: block;
+      margin: 0 auto;
+    }
+  }
   .buttonWrapper {
     display: flex;
     .thumbUpAltWrapper {
