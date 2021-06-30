@@ -9,6 +9,7 @@ body {
   font-family: "Noto Sans JP", sans-serif;
   font-family: "Ubuntu", sans-serif;
   background-color: #b4b8ab;
+  min-height: 100vh;
 }
 
 code {
