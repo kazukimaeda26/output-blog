@@ -1,40 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import ButtonBase from "@material-ui/core/ButtonBase";
 import noImage from "../../images/noImage.jpg";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
 import { selectBlog } from "../../features/blog/blogSlice";
 import { fetchComments } from "../../features/comment/commentSlice";
 import styles from "./BlogCard.module.scss";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      margin: "auto",
-      maxWidth: 500,
-    },
-    image: {
-      width: 200,
-      height: 200,
-    },
-    img: {
-      margin: "auto",
-      display: "block",
-      maxWidth: "100%",
-      maxHeight: "100%",
-    },
-  })
-);
 
 interface propType {
   blog: {
@@ -50,7 +22,6 @@ interface propType {
 const BlogCard: React.FC<propType> = ({ blog }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const classes = useStyles();
   let text = blog.text;
   if (text.length > 60) text = text.substr(0, 57) + "...";
 
