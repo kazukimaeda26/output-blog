@@ -48,10 +48,18 @@ const BlogForm: React.FC = () => {
   const history = useHistory();
 
   const handleCreate = async () => {
-    await createBlog(tmpBlog.tmpTitle, tmpBlog.tmpText);
-    dispatch(resetTmpTitleAndText(""));
-    dispatch(fetchBlogs());
-    history.push("/admin-home");
+    if (tmpBlog.tmpTitle === "" && tmpBlog.tmpText === "") {
+      alert("タイトルとテキストを入力してください。");
+    } else if (tmpBlog.tmpTitle === "") {
+      alert("タイトルを入力してください。");
+    } else if (tmpBlog.tmpText === "") {
+      alert("テキストを入力してください。");
+    } else {
+      await createBlog(tmpBlog.tmpTitle, tmpBlog.tmpText);
+      dispatch(resetTmpTitleAndText(""));
+      dispatch(fetchBlogs());
+      history.push("/admin-home");
+    }
   };
   const handleEdit = async (data: Inputs) => {
     const sendData = {
