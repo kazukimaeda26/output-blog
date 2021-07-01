@@ -50,8 +50,8 @@ const BlogCard: React.FC<propType> = ({ blog }) => {
         likes: blog.likes,
       })
     );
-    const blog_id = blog.id;
-    dispatch(fetchComments(blog_id));
+    const blogId= blog.id;
+    dispatch(fetchComments(blogId));
     history.push(`/blog/${blog.id}`);
   };
 

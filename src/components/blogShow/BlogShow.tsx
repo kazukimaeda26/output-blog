@@ -41,19 +41,19 @@ const BlogShow: React.FC = () => {
   const comments = useSelector(allComments);
 
   const params: params = useParams();
-  const blog_id = params.blogId;
+  const blogId = params.blogId;
 
   useEffect(() => {
     const getData = () => {
-      dispatch(fetchSelectedBlog(blog_id));
-      dispatch(fetchComments(blog_id));
+      dispatch(fetchSelectedBlog(blogId));
+      dispatch(fetchComments(blogId));
     };
     getData();
   }, []);
 
   const handleCreate = async (data: Inputs) => {
-    await createComment(blog_id, data.text, data.nickname);
-    dispatch(fetchComments(blog_id));
+    await createComment(blogId, data.text, data.nickname);
+    dispatch(fetchComments(blogId));
     reset();
   };
 

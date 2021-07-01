@@ -77,8 +77,8 @@ export const fetchBlogs = createAsyncThunk("blog/getAllBlogs", async () => {
 // selectedBlogの取得
 export const fetchSelectedBlog = createAsyncThunk(
   "blog/getBlog",
-  async (blog_id: string) => {
-    const res = await db.collection("blogs").doc(blog_id).get();
+  async (blogId: string) => {
+    const res = await db.collection("blogs").doc(blogId).get();
     const selectedBlog: selectedBlog = {
       id: res.id,
       title: res.get("title"),
@@ -154,11 +154,11 @@ export const deleteBlog = async (id: string): Promise<void> => {
 
 // likesのカウントを更新する
 export const updateLikesNum = async (
-  blog_id: string,
+  blogId: string,
   likes: number
 ): Promise<void> => {
   try {
-    await db.collection("blogs").doc(blog_id).set(
+    await db.collection("blogs").doc(blogId).set(
       {
         likes: likes,
       },

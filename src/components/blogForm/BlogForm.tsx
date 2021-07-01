@@ -44,15 +44,14 @@ const BlogForm: React.FC = () => {
   const selectedBlog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
   const tmpBlog = useSelector(getTmpBlog);
-  console.log(tmpBlog);
   const params: params = useParams();
   const location = useLocation();
-  const blog_id = params.blogId;
+  const blogId = params.blogId;
 
   useEffect(() => {
     const getData = () => {
       if (location.pathname.indexOf("edit", 0) > 0) {
-        dispatch(fetchSelectedBlog(blog_id));
+        dispatch(fetchSelectedBlog(blogId));
         dispatch(onEditState(""));
       } else {
         dispatch(offEditState(""));

@@ -21,10 +21,10 @@ const initialState: commentState = {
 // commentの全件取得
 export const fetchComments = createAsyncThunk(
   "comment/getAllComments",
-  async (blog_id: string) => {
+  async (blogId: string) => {
     const res = await db
       .collection("blogs")
-      .doc(blog_id)
+      .doc(blogId)
       .collection("comments")
       .orderBy("dateTime", "desc")
       .get();
@@ -44,14 +44,14 @@ export const fetchComments = createAsyncThunk(
 
 // commentの新規作成
 export const createComment = async (
-  blog_id: string,
+  blogId: string,
   text: string,
   nickname: string
 ): Promise<void> => {
   try {
     const now = new Date();
     const dateTime = firebase.firestore.Timestamp.fromDate(now);
-    await db.collection("blogs").doc(blog_id).collection("comments").add({
+    await db.collection("blogs").doc(blogId).collection("comments").add({
       text: text,
       nickname: nickname,
       createdAt: now.toLocaleString(),

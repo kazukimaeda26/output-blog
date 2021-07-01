@@ -35,24 +35,14 @@ const Header: React.FC<Inputs> = () => {
           {isAdmin ? "Dash Board" : "Output Blog"}
         </div>
       </div>
-      {isAdmin ? (
-        <Button
-          variant="contained"
-          className={styles.button}
-          onClick={() => console.log("adminである")}
-        >
-          管理者画面へ
-        </Button>
-      ) : (
-        <Button
-          variant="contained"
-          className={styles.button}
-          onClick={() => transitionToAdminSignInPath()}
-        >
-          <LockOpenRoundedIcon />
-          管理者としてログイン
-        </Button>
-      )}
+      <Button
+        variant="contained"
+        className={styles.button}
+        onClick={() => transitionToAdminSignInPath()}
+      >
+        <LockOpenRoundedIcon />
+        管理者としてログイン
+      </Button>
     </div>
   );
 };
