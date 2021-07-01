@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import marked from "marked";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 
 import Header from "../header/Header";
 import {
@@ -9,6 +10,7 @@ import {
   countUpLikes,
   countDownLikes,
   updateLikesNum,
+  fetchSelectedBlog,
 } from "../../features/blog/blogSlice";
 import {
   createComment,
@@ -28,13 +30,18 @@ type Inputs = {
   nickname: string;
 };
 
+type params = {
+  blogId: string;
+};
+
 const BlogShow: React.FC = () => {
   const { handleSubmit, register, reset } = useForm();
   const dispatch = useDispatch();
   const selectedBlog = useSelector(getSelectedBlog);
   const comments = useSelector(allComments);
 
-  const blog_id = selectedBlog.id;
+  const params: params = useParams();
+  const blog_id = params.blogId;
 
   const handleCreate = async (data: Inputs) => {
     await createComment(blog_id, data.text, data.nickname);
@@ -50,6 +57,14 @@ const BlogShow: React.FC = () => {
     await updateLikesNum(selectedBlog.id, selectedBlog.likes - 1);
     dispatch(countDownLikes(""));
   };
+
+  useEffect(() => {
+    const getData = () => {
+      dispatch(fetchSelectedBlog(blog_id));
+    };
+    getData();
+  }, []);
+
   return (
     <>
       <Header />

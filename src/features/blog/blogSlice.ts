@@ -26,6 +26,14 @@ export interface blogState {
     tmpText: string;
   };
 }
+export interface selectedBlog {
+  id: string;
+  title: string;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
+  likes: number;
+}
 
 const initialState: blogState = {
   idCount: 0,
@@ -60,6 +68,23 @@ export const fetchBlogs = createAsyncThunk("blog/getAllBlogs", async () => {
   const passData = { allBlogs, blogNumber };
   return passData;
 });
+
+// blogの取得
+export const fetchSelectedBlog = createAsyncThunk(
+  "blog/getBlog",
+  async (blog_id: string) => {
+    const res = await db.collection("blogs").doc(blog_id).get();
+    const selectedBlog: selectedBlog = {
+      id: res.id,
+      title: res.get("title"),
+      text: res.get("text"),
+      createdAt: res.get("createdAt"),
+      updatedAt: res.get("updatedAt"),
+      likes: res.get("likes"),
+    };
+    return selectedBlog;
+  }
+);
 
 // blogの新規作成
 export const createBlog = async (
@@ -171,6 +196,9 @@ export const blogSlice = createSlice({
     builder.addCase(fetchBlogs.fulfilled, (state, action) => {
       state.blogs = action.payload.allBlogs;
       state.idCount = action.payload.blogNumber;
+    });
+    builder.addCase(fetchSelectedBlog.fulfilled, (state, action) => {
+      state.selectedBlog = action.payload;
     });
   },
 });
