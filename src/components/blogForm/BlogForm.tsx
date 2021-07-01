@@ -3,9 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import marked from "marked";
@@ -22,7 +21,11 @@ import {
   getTmpBlog,
   resetTmpTitleAndText,
   fetchBlogs,
+  fetchSelectedBlog,
+  onEditState,
+  offEditState,
 } from "../../features/blog/blogSlice";
+import { useEffect } from "react";
 
 interface Inputs {
   id: number;
@@ -33,7 +36,7 @@ interface Inputs {
   likes: number;
 }
 
-interface paramTypes {
+interface params {
   blogId: string;
 }
 
@@ -41,6 +44,22 @@ const BlogForm: React.FC = () => {
   const selectedBlog = useSelector(getSelectedBlog);
   const editState = useSelector(getEditState);
   const tmpBlog = useSelector(getTmpBlog);
+  console.log(tmpBlog);
+  const params: params = useParams();
+  const location = useLocation();
+  const blog_id = params.blogId;
+
+  useEffect(() => {
+    const getData = () => {
+      if (location.pathname.indexOf("edit", 0) > 0) {
+        dispatch(fetchSelectedBlog(blog_id));
+        dispatch(onEditState(""));
+      } else {
+        dispatch(offEditState(""));
+      }
+    };
+    getData();
+  }, []);
 
   const dispatch: AppDispatch = useDispatch();
   const { handleSubmit, register } = useForm();
@@ -87,14 +106,6 @@ const BlogForm: React.FC = () => {
     dispatch(changeTmpText(input));
   };
 
-  function handleDrop(data: any, e: any) {
-    let files = e.dataTransfer.files;
-    if (files.length > 0) {
-      let file = files[0];
-      alert("FileName : " + file.name);
-    }
-  }
-
   return (
     <>
       <form
@@ -127,7 +138,6 @@ const BlogForm: React.FC = () => {
           <div className={styles.leftTextWrapper}>
             <SimpleMDE
               onChange={(e) => handleTextChange(e)}
-              events={{ drop: handleDrop }}
               className={styles.text}
               value={tmpBlog.tmpText}
             />

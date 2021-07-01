@@ -35,6 +35,11 @@ export interface selectedBlog {
   likes: number;
 }
 
+export interface tmpBlog {
+  tmpTitle: string;
+  tmpText: string;
+}
+
 const initialState: blogState = {
   idCount: 0,
   blogs: [],
@@ -82,7 +87,11 @@ export const fetchSelectedBlog = createAsyncThunk(
       updatedAt: res.get("updatedAt"),
       likes: res.get("likes"),
     };
-    return selectedBlog;
+    const tmpBlog: tmpBlog = {
+      tmpTitle: res.get("title"),
+      tmpText: res.get("text"),
+    };
+    return { selectedBlog, tmpBlog };
   }
 );
 
@@ -171,6 +180,12 @@ export const blogSlice = createSlice({
     selectBlog: (state, action) => {
       state.selectedBlog = action.payload;
     },
+    onEditState: (state, action) => {
+      state.edit = true;
+    },
+    offEditState: (state, action) => {
+      state.edit = false;
+    },
     toggleEditState: (state, action) => {
       state.edit = action.payload;
     },
@@ -198,12 +213,15 @@ export const blogSlice = createSlice({
       state.idCount = action.payload.blogNumber;
     });
     builder.addCase(fetchSelectedBlog.fulfilled, (state, action) => {
-      state.selectedBlog = action.payload;
+      state.selectedBlog = action.payload.selectedBlog;
+      state.tmpBlog = action.payload.tmpBlog;
     });
   },
 });
 export const {
   selectBlog,
+  onEditState,
+  offEditState,
   toggleEditState,
   changeTmpTitle,
   changeTmpText,

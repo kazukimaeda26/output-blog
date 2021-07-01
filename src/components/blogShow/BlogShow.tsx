@@ -43,6 +43,14 @@ const BlogShow: React.FC = () => {
   const params: params = useParams();
   const blog_id = params.blogId;
 
+  useEffect(() => {
+    const getData = () => {
+      dispatch(fetchSelectedBlog(blog_id));
+      dispatch(fetchComments(blog_id));
+    };
+    getData();
+  }, []);
+
   const handleCreate = async (data: Inputs) => {
     await createComment(blog_id, data.text, data.nickname);
     dispatch(fetchComments(blog_id));
@@ -57,14 +65,6 @@ const BlogShow: React.FC = () => {
     await updateLikesNum(selectedBlog.id, selectedBlog.likes - 1);
     dispatch(countDownLikes(""));
   };
-
-  useEffect(() => {
-    const getData = () => {
-      dispatch(fetchSelectedBlog(blog_id));
-      dispatch(fetchComments(blog_id));
-    };
-    getData();
-  }, []);
 
   return (
     <>
