@@ -1,10 +1,9 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import styles from "./Header.module.scss";
-import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import LockOpenRoundedIcon from "@material-ui/icons/LockOpenRounded";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { getIsAdmin } from "../../features/user/userSlice";
 import {
   resetTmpTitleAndText,
@@ -17,13 +16,8 @@ type Inputs = {
 const Header: React.FC<Inputs> = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
   const isAdmin = useSelector(getIsAdmin);
 
-  const handleBlogCreate = () => {
-    const path = "/blog/new";
-    history.push(path);
-  };
   const transitionToRootPath = () => {
     dispatch(toggleEditState(false));
     dispatch(resetTmpTitleAndText(""));
@@ -59,16 +53,6 @@ const Header: React.FC<Inputs> = () => {
           管理者としてログイン
         </Button>
       )}
-      {/* {location.pathname === "/" ? (
-        <Button
-          variant="contained"
-          className={styles.button}
-          onClick={handleBlogCreate}
-        >
-          <NoteAddIcon className={styles.icon} />
-          記事作成
-        </Button>
-      ) : null} */}
     </div>
   );
 };

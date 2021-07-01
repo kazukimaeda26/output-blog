@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -18,9 +18,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { AppDispatch } from "../../app/store";
-import { getIsSignIn, getIsAdmin } from "../../features/user/userSlice";
 import { auth } from "../../firebase";
-import { toggleIsSignIn, toggleIsAdmin } from "../../features/user/userSlice";
+import { toggleIsAdmin } from "../../features/user/userSlice";
 
 function Copyright() {
   return (

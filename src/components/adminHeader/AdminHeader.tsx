@@ -3,12 +3,11 @@ import Button from "@material-ui/core/Button";
 import styles from "./AdminHeader.module.scss";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
-import LockOpenRoundedIcon from "@material-ui/icons/LockOpenRounded";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 
 import { auth } from "../../firebase";
-import { getIsAdmin, toggleIsAdmin } from "../../features/user/userSlice";
+import { toggleIsAdmin } from "../../features/user/userSlice";
 import {
   resetTmpTitleAndText,
   toggleEditState,
@@ -21,7 +20,6 @@ const AdminHeader: React.FC<Inputs> = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  const isAdmin = useSelector(getIsAdmin);
 
   const handleBlogCreate = () => {
     const path = "/admin/blog/new";
@@ -31,10 +29,6 @@ const AdminHeader: React.FC<Inputs> = () => {
     dispatch(toggleEditState(false));
     dispatch(resetTmpTitleAndText(""));
     history.push("/admin-home");
-  };
-
-  const transitionToAdminSignInPath = () => {
-    history.push("/admin-auth");
   };
 
   const handleSignOut = async () => {
