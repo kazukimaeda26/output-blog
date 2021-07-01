@@ -9,6 +9,12 @@
   .titleWrapper {
     text-decoration: none;
     cursor: pointer;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
     .title {
       font-size: 2rem;
       color: white;
@@ -21,6 +27,15 @@
   .button {
     background-color: #ffffff;
     padding: 0.5rem;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 0 2rem 0;
+    }
     .icon {
       margin-right: 1rem;
     }
