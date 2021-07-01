@@ -15,26 +15,28 @@ const AdminBlogs: React.FC = () => {
   const blogs = useSelector(allBlogs);
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={styles.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="right">ID</TableCell>
-            <TableCell align="center">タイトル</TableCell>
-            <TableCell align="right">作成日時</TableCell>
-            <TableCell align="right">最終更新日時</TableCell>
-            <TableCell align="right">いいね数</TableCell>
-            <TableCell align="center">編集する</TableCell>
-            <TableCell align="center">削除する</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {blogs.map((blog) => (
-            <AdminBlogItem key={blog.id} blog={blog} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className={styles.tableWrapper}>
+      <TableContainer component={Paper}>
+        <Table className={styles.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">ID</TableCell>
+              <TableCell align="center">タイトル</TableCell>
+              <TableCell align="right">作成日時</TableCell>
+              <TableCell align="right">最終更新日時</TableCell>
+              <TableCell align="right">いいね数</TableCell>
+              <TableCell align="center">編集する</TableCell>
+              <TableCell align="center">削除する</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {blogs.map((blog) => (
+              <AdminBlogItem key={blog.id} blog={blog} />
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 };
 
