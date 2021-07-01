@@ -9,6 +9,11 @@
   .titleWrapper {
     text-decoration: none;
     cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
     .title {
       font-size: 2rem;
       color: white;
@@ -23,6 +28,12 @@
       background-color: white;
       padding: 0.5rem;
       margin-left: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
       .icon {
         margin-right: 1rem;
       }
