@@ -69,7 +69,7 @@ export const fetchBlogs = createAsyncThunk("blog/getAllBlogs", async () => {
   return passData;
 });
 
-// blogの取得
+// selectedBlogの取得
 export const fetchSelectedBlog = createAsyncThunk(
   "blog/getBlog",
   async (blog_id: string) => {

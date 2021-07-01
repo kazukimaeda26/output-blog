@@ -61,6 +61,7 @@ const BlogShow: React.FC = () => {
   useEffect(() => {
     const getData = () => {
       dispatch(fetchSelectedBlog(blog_id));
+      dispatch(fetchComments(blog_id));
     };
     getData();
   }, []);
