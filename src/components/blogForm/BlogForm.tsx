@@ -67,10 +67,18 @@ const BlogForm: React.FC = () => {
       title: tmpBlog.tmpTitle,
       text: tmpBlog.tmpText,
     };
-    await updateBlog(sendData);
-    dispatch(resetTmpTitleAndText(""));
-    dispatch(fetchBlogs());
-    history.push("/admin-home");
+    if (sendData.title === "" && sendData.text === "") {
+      alert("タイトルとテキストを入力してください。");
+    } else if (sendData.title === "") {
+      alert("タイトルを入力してください。");
+    } else if (sendData.text === "") {
+      alert("テキストを入力してください。");
+    } else {
+      await updateBlog(sendData);
+      dispatch(resetTmpTitleAndText(""));
+      dispatch(fetchBlogs());
+      history.push("/admin-home");
+    }
   };
   const handleTitleChange = (input: string) => {
     dispatch(changeTmpTitle(input));
