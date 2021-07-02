@@ -2,3 +2,8 @@
   margin: 0 2rem;
   // padding: 2rem 0;
 }
+@media screen and (max-width: 560px) {
+  .blogsWrapper {
+    margin: 0.5% auto;
+  }
+}

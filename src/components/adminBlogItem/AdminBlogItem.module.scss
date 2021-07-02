@@ -28,3 +28,14 @@
     }
   }
 }
+
+@media screen and (max-width: 560px) {
+  .table {
+    .idColumn,
+    .createdAtColumn,
+    .updatedAtColumn,
+    .likesColumn {
+      display: none;
+    }
+  }
+}

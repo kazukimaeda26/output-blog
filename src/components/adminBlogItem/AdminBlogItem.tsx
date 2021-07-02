@@ -45,12 +45,20 @@ const AdminBlogItem: React.FC<propType> = ({ blog }) => {
 
   return (
     <>
-      <TableRow key={blog.id}>
-        <TableCell align="right">{blog.id}</TableCell>
+      <TableRow key={blog.id} className={styles.table}>
+        <TableCell className={styles.idColumn} align="right">
+          {blog.id}
+        </TableCell>
         <TableCell align="center">{blog.title}</TableCell>
-        <TableCell align="right">{blog.createdAt}</TableCell>
-        <TableCell align="right">{blog.updatedAt}</TableCell>
-        <TableCell align="right">{blog.likes}</TableCell>
+        <TableCell align="right" className={styles.createdAtColumn}>
+          {blog.createdAt}
+        </TableCell>
+        <TableCell align="right" className={styles.updatedAtColumn}>
+          {blog.updatedAt}
+        </TableCell>
+        <TableCell align="right" className={styles.likesColumn}>
+          {blog.likes}
+        </TableCell>
         {blog.id === "pnuwBDzYcSrV6HOtMShK" ? (
           <TableCell align="center" onClick={handleEditBlog}>
             <div className={styles.iconWrapper}>現在編集できません</div>

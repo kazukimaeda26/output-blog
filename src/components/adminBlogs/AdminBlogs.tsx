@@ -20,11 +20,19 @@ const AdminBlogs: React.FC = () => {
         <Table className={styles.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="right">ID</TableCell>
+              <TableCell className={styles.idColumn} align="right">
+                ID
+              </TableCell>
               <TableCell align="center">タイトル</TableCell>
-              <TableCell align="right">作成日時</TableCell>
-              <TableCell align="right">最終更新日時</TableCell>
-              <TableCell align="right">いいね数</TableCell>
+              <TableCell className={styles.createdAtColumn} align="right">
+                作成日時
+              </TableCell>
+              <TableCell className={styles.updatedAtColumn} align="right">
+                最終更新日時
+              </TableCell>
+              <TableCell className={styles.likesColumn} align="right">
+                いいね数
+              </TableCell>
               <TableCell align="center">編集する</TableCell>
               <TableCell align="center">削除する</TableCell>
             </TableRow>

@@ -4,3 +4,10 @@
   display: flex;
   justify-content: center;
 }
+
+@media screen and (max-width: 560px) {
+  .blogsWrapper {
+    margin: 0;
+    padding: 0 3%;
+  }
+}

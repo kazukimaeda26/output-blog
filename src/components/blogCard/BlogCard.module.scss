@@ -2,7 +2,7 @@
 .blogCardWrapper {
   background-color: white;
   height: 12rem;
-  width: 50rem;
+  width: 80%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -61,5 +61,13 @@
       font-size: small;
       color: gray;
     }
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .blogCardWrapper {
+    margin: 2% auto 0;
+    width: 100%;
+    height: 30vh;
   }
 }

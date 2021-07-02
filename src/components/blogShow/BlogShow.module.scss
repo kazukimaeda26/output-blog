@@ -151,3 +151,35 @@
     }
   }
 }
+
+@media screen and (max-width: 560px) {
+  .wrapper {
+    margin: 0.5% auto;
+    width: 100%;
+    padding: 0;
+    .titleWrapper {
+      padding: 0 3%;
+    }
+    .text {
+      padding: 3%;
+    }
+  }
+  .commentWrapper {
+    padding: 0;
+    margin-top: 3%;
+    .commentListsAndPostCommentWrapper {
+      border-radius: 0.3rem;
+      padding: 3%;
+      .commentLists {
+        .commentList {
+          padding: 0;
+        }
+      }
+    }
+    .commentForm {
+      .button {
+        width: 100%;
+      }
+    }
+  }
+}
