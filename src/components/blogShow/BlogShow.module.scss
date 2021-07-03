@@ -163,6 +163,28 @@
     .text {
       padding: 3%;
     }
+    .buttonWrapper {
+      display: flex;
+      text-align: center;
+      .thumbUpAltWrapper {
+        margin: 0;
+        .button {
+          font-size: 0.9rem;
+          width: auto;
+        }
+      }
+      .thumbDownAltWrapper {
+        width: 65%;
+        margin: 0;
+        .button {
+          font-size: 0.9rem;
+        }
+        .num {
+          margin-left: 1%;
+          font-size: 0.9rem;
+        }
+      }
+    }
   }
   .commentWrapper {
     padding: 0;
