@@ -77,3 +77,34 @@
     }
   }
 }
+
+@media screen and (max-width: 560px) {
+  .form {
+    .titleWrapper {
+      display: block;
+      height: auto;
+      .leftTitleWrapper {
+        width: 100%;
+      }
+      .rightTitleWrapper {
+        display: none;
+      }
+    }
+    .textWrapper {
+      display: block;
+      height: auto;
+      .leftTextWrapper {
+        width: 100%;
+      }
+      .rightTextWrapper {
+        width: 100%;
+      }
+    }
+    .buttonWrapper {
+      width: 100%;
+      .button {
+        width: 100%;
+      }
+    }
+  }
+}
