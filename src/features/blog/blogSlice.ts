@@ -174,6 +174,7 @@ export const blogSlice = createSlice({
   initialState,
   reducers: {
     resetTmpTitleAndText: (state, action) => {
+      state.selectedBlog = { ...initialState.selectedBlog };
       state.tmpBlog.tmpTitle = action.payload;
       state.tmpBlog.tmpText = action.payload;
     },
