@@ -59,9 +59,10 @@ const AdminBlogItem: React.FC<propType> = ({ blog }) => {
         <TableCell align="right" className={styles.likesColumn}>
           {blog.likes}
         </TableCell>
-        {blog.id === "pnuwBDzYcSrV6HOtMShK" ? (
-          <TableCell align="center" onClick={handleEditBlog}>
-            <div className={styles.iconWrapper}>現在編集できません</div>
+        {blog.id === "uXTVVGmkb0Isgm5QL667" ||
+        blog.id === "UZwogsO0hptocHdQu1PZ" ? (
+          <TableCell align="center">
+            <div className={styles.iconWrapper}>編集できません</div>
           </TableCell>
         ) : (
           <TableCell align="center" onClick={handleEditBlog}>
@@ -71,9 +72,10 @@ const AdminBlogItem: React.FC<propType> = ({ blog }) => {
             </div>
           </TableCell>
         )}
-        {blog.id === "uXTVVGmkb0Isgm5QL667" ? (
+        {blog.id === "uXTVVGmkb0Isgm5QL667" ||
+        blog.id === "UZwogsO0hptocHdQu1PZ" ? (
           <TableCell align="center">
-            <div className={styles.iconWrapper}>現在削除出来ません</div>
+            <div className={styles.iconWrapper}>削除出来ません</div>
           </TableCell>
         ) : (
           <TableCell align="center">
