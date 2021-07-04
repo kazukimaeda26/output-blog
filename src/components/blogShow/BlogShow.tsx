@@ -52,9 +52,13 @@ const BlogShow: React.FC = () => {
   }, []);
 
   const handleCreate = async (data: Inputs) => {
-    await createComment(blogId, data.text, data.nickname);
-    dispatch(fetchComments(blogId));
-    reset();
+    if (data.text === "") {
+      alert("コメントを入力してください。");
+    } else {
+      await createComment(blogId, data.text, data.nickname);
+      dispatch(fetchComments(blogId));
+      reset();
+    }
   };
 
   const handleCountUp = async (id: string, likes: number) => {
